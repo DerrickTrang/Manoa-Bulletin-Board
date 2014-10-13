@@ -8,6 +8,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/categories_button"
+        android:title="@string/categories_button"
+        android:showAsAction="always" />
     <item 
         android:id="@+id/create_post_button"
         android:title="@string/create_post_button"

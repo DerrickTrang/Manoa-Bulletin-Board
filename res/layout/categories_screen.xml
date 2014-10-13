@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical"
+    tools:context="com.example.manoabulletinboard.CategoriesScreen" >
+
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/categories_screen_show_all"
+        android:id="@+id/categories_screen_show_all" />"
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/categories_screen_food_truck"
+        android:id="@+id/categories_screen_food_truck" />
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/categories_screen_clubs"
+        android:id="@+id/categories_screen_clubs" />
+
+</LinearLayout>

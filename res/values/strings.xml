@@ -6,19 +6,25 @@
     <string name="action_settings">Settings</string>
     <string name="search_hint">Find a Specific Post</string>
     <string name="search_button">Search</string>
-    <string name="create_post_button">New Post</string>    
-
-    <string name="title_activity_create_post_screen">CreatePostScreen</string>
+    <string name="create_post_button">New Post</string>
+    <string name="categories_button">Categories</string>
+    
+    <!-- Strings for create post screen -->
+    <string name="title_activity_create_post_screen">Create a Post</string>
     <string name="create_post_screen_title">Title</string>
     <string name="create_post_screen_email">Contact Email</string>
     <string name="create_post_screen_description">Description</string>
     <string-array name="create_post_screen_categories">
-        <item >Food Truck</item>
-        <item >Club</item>
+        <item>Food Truck</item>
+        <item>Club</item>
     </string-array>
     <string name="create_post_screen_submit">Submit</string>
-    <string name="create_post_screen_cancel">Cancel</string>    
-
+    <string name="create_post_screen_cancel">Cancel</string>
     
+	<!-- Strings for categories screen -->
+	<string name="title_activity_categories_screen">Sort By Categories</string>
+    <string name="categories_screen_show_all">Show All</string>
+    <string name="categories_screen_food_truck">Food Trucks</string>
+    <string name="categories_screen_clubs">Clubs</string>
     
 </resources>

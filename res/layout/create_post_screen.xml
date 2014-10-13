@@ -29,13 +29,13 @@
             android:hint="@string/create_post_screen_email" />
 
         <Spinner
-            android:id="@+id/newpost_categories"
+            android:id="@+id/create_post_screen_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/create_post_screen_categories" />
 
         <EditText
-            android:id="@+id/newpost_description"
+            android:id="@+id/create_post_screen_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,12 +47,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
         <Button
-            android:id="@+id/newpost_submit"
+            android:id="@+id/create_post_screen_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_post_screen_submit" />
         <Button 
-            android:id="@+id/newpost_cancel"
+            android:id="@+id/create_post_screen_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_post_screen_cancel"/>

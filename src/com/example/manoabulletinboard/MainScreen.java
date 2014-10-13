@@ -53,6 +53,9 @@ public class MainScreen extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch(id) {
+        case R.id.categories_button:
+        	sortByCategories();
+        	return true;
         case R.id.create_post_button:
         	createPost();
         	return true;
@@ -61,6 +64,11 @@ public class MainScreen extends ActionBarActivity {
         default:
         return super.onOptionsItemSelected(item);
         }
+    }
+    
+    public void sortByCategories() {
+    	Intent intent = new Intent(this, CategoriesScreen.class);
+    	startActivityForResult(intent, 2); // "2" is the request code for category screen
     }
     
     public void createPost() {

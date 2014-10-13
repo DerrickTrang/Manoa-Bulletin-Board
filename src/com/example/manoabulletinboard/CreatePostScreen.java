@@ -30,11 +30,11 @@ public class CreatePostScreen extends Activity{
 		
 		/*Assign view variables to xml objects*/
 		Title = (TextView)findViewById(R.id.create_post_screen_title);
-		Description = (TextView)findViewById(R.id.newpost_description);
+		Description = (TextView)findViewById(R.id.create_post_screen_description);
 		Email = (TextView)findViewById(R.id.create_post_screen_email);
-		Category = (Spinner)findViewById(R.id.newpost_categories);
-		Submit = (Button)findViewById(R.id.newpost_submit);
-		Cancel = (Button)findViewById(R.id.newpost_cancel);
+		Category = (Spinner)findViewById(R.id.create_post_screen_categories);
+		Submit = (Button)findViewById(R.id.create_post_screen_submit);
+		Cancel = (Button)findViewById(R.id.create_post_screen_cancel);
 		
 		// Enable buttons and set listeners
 		Submit.setEnabled(true);
