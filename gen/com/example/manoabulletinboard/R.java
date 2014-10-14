@@ -1263,8 +1263,6 @@ containing a value of this type.
         public static final int categories_button=0x7f0a0013;
         public static final int categories_screen_clubs=0x7f0a001d;
         public static final int categories_screen_food_truck=0x7f0a001c;
-        /**  Strings for categories screen 
-         */
         public static final int categories_screen_show_all=0x7f0a001b;
         public static final int create_post_button=0x7f0a0012;
         public static final int create_post_screen_cancel=0x7f0a0019;
@@ -1274,6 +1272,8 @@ containing a value of this type.
         public static final int create_post_screen_title=0x7f0a0015;
         public static final int search_button=0x7f0a0011;
         public static final int search_hint=0x7f0a0010;
+        /**  Strings for categories screen 
+         */
         public static final int title_activity_categories_screen=0x7f0a001a;
         /**  Strings for create post screen 
          */
