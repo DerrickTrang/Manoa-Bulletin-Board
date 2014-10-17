@@ -6,7 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="search_hint">Find a Specific Post</string>
     <string name="search_button">Search</string>
-    <string name="create_post_button">New Post</string>
+    <string name="refresh_button">Refresh</string>
+    <string name="create_post_button">Create a Post</string>
     <string name="categories_button">Categories</string>
     
     <!-- Strings for create post screen -->

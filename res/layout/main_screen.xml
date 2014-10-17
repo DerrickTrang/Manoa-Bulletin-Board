@@ -29,17 +29,17 @@
             android:id="@+id/search_button" />
     </LinearLayout>
     
-            <Button 
+   		<Button 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/create_post_button"
-            android:id="@+id/create_post_button"
+            android:hint="@string/refresh_button"
+            android:id="@+id/refresh_button"
             android:onClick="createPost" />
 
-    <ScrollView 
+    <ListView 
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-        
-    </ScrollView>
+        android:layout_height="fill_parent"
+        android:id="@+id/main_screen_scroll_view" >
+    </ListView>
     
 </LinearLayout>

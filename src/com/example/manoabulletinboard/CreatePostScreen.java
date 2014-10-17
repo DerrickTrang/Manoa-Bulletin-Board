@@ -21,6 +21,11 @@ public class CreatePostScreen extends Activity{
 	float Location_x;
 	float Location_y;
 	int Contact_Number;
+	
+	/*Instantiate dbHelper and a database*/
+	DbHelper dbHelper;
+	android.database.sqlite.SQLiteDatabase db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +52,11 @@ public class CreatePostScreen extends Activity{
 				Post UserPost = storeViewToObject();
 				// Post to server
 				// For now, send it back to the main activity for development
+				
+				
+				/*insert into the database*/
+				((PostApp)getApplication()).postdata.insert(UserPost);
+				
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("result", "created");
 				Log.d("ManoaBulletinBoard","Created post, sending intent 'created'");

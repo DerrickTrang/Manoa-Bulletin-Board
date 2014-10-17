@@ -3,42 +3,82 @@ package com.example.manoabulletinboard;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.Toast;
 
 
 public class MainScreen extends ActionBarActivity {
 
 	Button SearchButton;
-	Button NewPost;
+	Button Refresh;
 	ArrayList<Post> post_list;
-	 
+
+	static final String[] FROM = {PostData.C_Title, PostData.C_Description, PostData.C_CREATED_AT};
+	static final int[] TO = {R.id.text_user,R.id.text_text,R.id.text_time};
+	
+	ListView list;
+	android.database.Cursor cursor;
+	SimpleCursorAdapter adapter;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
         SearchButton = (Button) findViewById(R.id.search_button);
-        NewPost = (Button)findViewById(R.id.create_post_button);
+        Refresh = (Button)findViewById(R.id.refresh_button);
         
        
-        NewPost.setEnabled(true);
-        NewPost.setOnClickListener(new View.OnClickListener(){
+        Refresh.setEnabled(true);
+        Refresh.setOnClickListener(new View.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				createPost();
+				cursor = ((PostApp)getApplication()).postdata.query();
+				/*Update cursor*/
+				adapter.changeCursor(cursor);
 			}
         	
         });
+        
+        /*List View initiation*/
+        list = (ListView)findViewById(R.id.main_screen_scroll_view);
+        adapter = new SimpleCursorAdapter(this, R.layout.post_view, cursor, FROM, TO);
+		
+		/*Set ViewBinder*/
+		adapter.setViewBinder(View_BINDER);
+		
+		/*Set adapter*/
+		list.setAdapter(adapter);
     }
 
+static final ViewBinder View_BINDER = new ViewBinder(){
 
+		@Override
+		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+			/*If the text from view is not the same 
+			 * as created at, return false */
+			if(view.getId() !=  R.id.text_time)
+				return false;
+			
+			long time = cursor.getLong(cursor.getColumnIndex(PostData.C_CREATED_AT));
+			CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(time);
+			((TextView)view).setText(relativeTime);
+			
+			return true;
+		}
+		};
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
