@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreatePostScreen extends Activity{
 	/*Attribute declaration*/
@@ -49,6 +50,12 @@ public class CreatePostScreen extends Activity{
 
 			@Override
 			public void onClick(View v) {
+				if(Title.getText().toString().matches("") || Description.getText().toString().matches("") || Email.getText().toString().matches("")) {
+                	Toast toast = Toast.makeText(getApplicationContext(), "Missing some fields", Toast.LENGTH_SHORT);
+                	toast.show();
+				}
+				else {
+				Log.d("ManoaBulletinBoard","Title is (" + Title.getText().toString() + ")");
 				Post UserPost = storeViewToObject();
 				// Post to server
 				// For now, send it back to the main activity for development
@@ -59,14 +66,9 @@ public class CreatePostScreen extends Activity{
 				
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("result", "created");
-				Log.d("ManoaBulletinBoard","Created post, sending intent 'created'");
 				setResult(RESULT_OK, returnIntent);
 				finish();
-				
-				/*Log is a Debugging tool, error detection etc.*/
-				Log.d("create_edit","onClicked");
-				Log.d("create_edit","onClicked with text:" + Title.getText());
-				
+				}
 			}
         	
         });

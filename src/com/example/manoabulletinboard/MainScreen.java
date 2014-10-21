@@ -38,7 +38,6 @@ public class MainScreen extends ActionBarActivity {
         SearchButton = (Button) findViewById(R.id.search_button);
         Refresh = (Button)findViewById(R.id.refresh_button);
         
-       
         Refresh.setEnabled(true);
         Refresh.setOnClickListener(new View.OnClickListener(){
 
@@ -122,6 +121,9 @@ static final ViewBinder View_BINDER = new ViewBinder(){
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
             	if(data.getStringExtra("result").equals("created") == true) {
+    				cursor = ((PostApp)getApplication()).postdata.query();
+    				/*Update cursor*/
+    				adapter.changeCursor(cursor);
                 	Toast toast = Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT);
                 	toast.show();
                 }
