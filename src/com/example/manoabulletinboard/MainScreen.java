@@ -1,12 +1,15 @@
 package com.example.manoabulletinboard;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +25,10 @@ public class MainScreen extends ActionBarActivity {
 
 	Button SearchButton;
 	Button Refresh;
+	
+	//for testing Server only
+	Button ServerB;
+	
 	ArrayList<Post> post_list;
 
 	static final String[] FROM = {PostData.C_Title, PostData.C_Description, PostData.C_CREATED_AT};
@@ -37,6 +44,35 @@ public class MainScreen extends ActionBarActivity {
         setContentView(R.layout.main_screen);
         SearchButton = (Button) findViewById(R.id.search_button);
         Refresh = (Button)findViewById(R.id.refresh_button);
+        
+        //for testing Server only *******************
+        ServerB = (Button)findViewById(R.id.button1);
+        ServerB.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Server a;
+				ResultSet rs;
+				a = new Server(list.getContext());
+				double c,b;
+				c=b=3.5;
+//				a.execute("ADD","1","2","3","4","5","6",b,c,"9","10");
+//				a.execute("DELETE","a","b","c","d");
+//				try{
+//					a.execute("SYNC");
+//					rs=a.get(5000, TimeUnit.MILLISECONDS);
+//					while(rs.next())
+//					{
+//						Log.i("Server Return",String.valueOf(rs.getInt(1)));
+//					}
+//				} catch (Exception e)
+//				{
+//					e.printStackTrace();
+//				}
+			}
+		});
+        //********************************************
         
         Refresh.setEnabled(true);
         Refresh.setOnClickListener(new View.OnClickListener(){
