@@ -57,7 +57,7 @@ public class MainScreen extends ActionBarActivity {
 				a = new Server(list.getContext());
 				double c,b;
 				c=b=3.5;
-//				a.execute("ADD","1","2","3","4","5","6",b,c,"9","10");
+				a.execute("ADD","1","2","3","4","5","6",b,c,"9","10");
 //				a.execute("DELETE","a","b","c","d");
 //				try{
 //					a.execute("SYNC");
