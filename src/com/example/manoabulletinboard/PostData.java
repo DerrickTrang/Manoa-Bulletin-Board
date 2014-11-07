@@ -51,9 +51,9 @@ public class PostData {
 		
 		ContentValues values = new ContentValues();
 		values.put(C_Title,post.getName());
-//		values.put(C_Email,post.getContactEmail());
+		values.put(C_Email,post.getContactEmail());
 		values.put(C_Category,post.getCategory());
-//		values.put(C_Number,post.getContactNumber());
+		values.put(C_Number,post.getContactNumber());
 		values.put(C_Description, post.getDescription());
 		values.put(C_CREATED_AT, seconds);
 
@@ -103,8 +103,8 @@ class DbHelper extends SQLiteOpenHelper{
 		/*Create the database*/
 		/*Create a table with given parameters*/
 		String sql = String.format("create table %s "+
-				"( _id INTEGER PRIMARY KEY AUTOINCREMENT,%s text,%s int, %s text, %s text)", PostData.Table,PostData.C_Title,
-				PostData.C_CREATED_AT,PostData.C_Description,PostData.C_Category);
+				"( _id INTEGER PRIMARY KEY AUTOINCREMENT,%s text,%s int, %s text, %s text, %s text, %s int)", PostData.Table,PostData.C_Title,
+				PostData.C_CREATED_AT,PostData.C_Description,PostData.C_Email,PostData.C_Category,PostData.C_Number);
 		
 		Log.d(TAG,"onCreate with SQL"+sql);
 		

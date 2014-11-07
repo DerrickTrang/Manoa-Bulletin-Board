@@ -1094,18 +1094,18 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f05004c;
+        public static final int action_settings=0x7f050050;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int button1=0x7f050046;
-        public static final int categories_button=0x7f05004d;
+        public static final int button1=0x7f050047;
+        public static final int categories_button=0x7f050051;
         public static final int categories_screen_clubs=0x7f05003e;
         public static final int categories_screen_food_truck=0x7f05003d;
         public static final int categories_screen_show_all=0x7f05003c;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
-        public static final int create_post_button=0x7f05004e;
+        public static final int create_post_button=0x7f050052;
         public static final int create_post_screen_cancel=0x7f050044;
         public static final int create_post_screen_categories=0x7f050041;
         public static final int create_post_screen_description=0x7f050042;
@@ -1135,7 +1135,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int refresh_button=0x7f050047;
+        public static final int refresh_button=0x7f050046;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
@@ -1161,6 +1161,10 @@ containing a value of this type.
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
+        public static final int view_post_screen_contact_number=0x7f05004f;
+        public static final int view_post_screen_description=0x7f05004d;
+        public static final int view_post_screen_email=0x7f05004e;
+        public static final int view_post_screen_title=0x7f05004c;
         public static final int withText=0x7f05000c;
     }
     public static final class integer {
@@ -1218,11 +1222,13 @@ containing a value of this type.
         public static final int main_screen=0x7f03001a;
         public static final int post_view=0x7f03001b;
         public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int view_post_screen=0x7f03001d;
     }
     public static final class menu {
         public static final int categories_screen=0x7f0d0000;
         public static final int create_post_screen=0x7f0d0001;
         public static final int main_screen=0x7f0d0002;
+        public static final int view_post_screen=0x7f0d0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1277,6 +1283,7 @@ containing a value of this type.
         public static final int create_post_screen_email=0x7f0a0017;
         public static final int create_post_screen_submit=0x7f0a0019;
         public static final int create_post_screen_title=0x7f0a0016;
+        public static final int hello_world=0x7f0a0020;
         public static final int refresh_button=0x7f0a0012;
         public static final int search_button=0x7f0a0011;
         public static final int search_hint=0x7f0a0010;
@@ -1286,6 +1293,12 @@ containing a value of this type.
         /**  Strings for create post screen 
          */
         public static final int title_activity_create_post_screen=0x7f0a0015;
+        public static final int title_activity_view_post_screen=0x7f0a001f;
+        public static final int view_post_screen_contact_number=0x7f0a0023;
+        public static final int view_post_screen_email=0x7f0a0022;
+        /**  Strings for view post screen 
+         */
+        public static final int view_post_screen_title=0x7f0a0021;
         public static final int welcome_message=0x7f0a000e;
     }
     public static final class style {

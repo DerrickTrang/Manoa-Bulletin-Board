@@ -14,21 +14,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:text="@string/welcome_message" />
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <EditText 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/search_hint"
-  			android:id="@+id/search_text" />
+	<ScrollView 
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="1">
+        	<EditText 
+            	android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:singleLine="true"
+            	android:ellipsize="start"
+            	android:hint="@string/search_hint"
+  				android:id="@+id/search_text" />
+	</ScrollView>
         <Button 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/search_button" 
             android:id="@+id/search_button" />
+		<Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/refresh_button"
+            android:id="@+id/refresh_button" />
     </LinearLayout>
 
     <Button
@@ -36,13 +50,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button" />
-    
-   		<Button 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/refresh_button"
-            android:id="@+id/refresh_button"
-            android:onClick="createPost" />
 
     <ListView 
         android:layout_width="fill_parent"

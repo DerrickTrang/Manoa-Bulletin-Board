@@ -2,7 +2,6 @@ package com.example.manoabulletinboard;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,11 +12,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -95,6 +97,27 @@ public class MainScreen extends ActionBarActivity {
 		
 		/*Set adapter*/
 		list.setAdapter(adapter);
+		
+		// Set listener for list clicks (go to ViewPostScreen.java)
+		list.setOnItemClickListener(new OnItemClickListener()
+		{
+		    @Override 
+		    public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+		    { 	Cursor c = (Cursor) list.getItemAtPosition(position);
+		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
+		        intent.putExtra("Title", c.getString(c.getColumnIndex("post_title")));
+		        Log.d("ManoaBulletinBoard","Added title to intent");
+		        intent.putExtra("Email", c.getString(c.getColumnIndex("post_email")));
+		        Log.d("ManoaBulletinBoard","Added email to intent");
+		        intent.putExtra("Description", c.getString(c.getColumnIndex("post_description")));
+		        Log.d("ManoaBulletinBoard","Added description to intent");
+		        startActivity(intent);
+		    }
+		});
+		
+		// Refresh screen
+		cursor = ((PostApp)getApplication()).postdata.query();
+		adapter.changeCursor(cursor);
     }
 
 static final ViewBinder View_BINDER = new ViewBinder(){
