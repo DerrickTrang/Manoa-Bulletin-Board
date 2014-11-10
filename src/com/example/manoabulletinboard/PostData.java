@@ -56,6 +56,7 @@ public class PostData {
 		values.put(C_Number,post.getContactNumber());
 		values.put(C_Description, post.getDescription());
 		values.put(C_CREATED_AT, seconds);
+		Log.d("ManoaBulletinBoard","seconds value: " + Integer.toString(seconds));
 
 		
 		
