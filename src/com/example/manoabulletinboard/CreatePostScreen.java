@@ -67,6 +67,7 @@ public class CreatePostScreen extends Activity{
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("result", "created");
 				setResult(RESULT_OK, returnIntent);
+				Log.d("ManoaBulletinBoard","leaving create post");
 				finish();
 				}
 			}

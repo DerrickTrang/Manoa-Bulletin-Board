@@ -29,6 +29,8 @@ public class PostData {
 	public static final String C_Title = "post_title";
 	public static final String C_Email = "post_email";
 	public static final String C_Category = "post_category";
+	public static final String C_Location_X = "post_location_x";
+	public static final String C_Location_Y = "post_location_y";
 	public static final String C_Number = "post_number";
 	public static final String C_Description = "post_description";
 	public static final String C_CREATED_AT = "created_at";
@@ -53,6 +55,8 @@ public class PostData {
 		values.put(C_Title,post.getName());
 		values.put(C_Email,post.getContactEmail());
 		values.put(C_Category,post.getCategory());
+		values.put(C_Location_X,post.getLocationX());
+		values.put(C_Location_Y, post.getLocationY());
 		values.put(C_Number,post.getContactNumber());
 		values.put(C_Description, post.getDescription());
 		values.put(C_CREATED_AT, seconds);
@@ -104,8 +108,8 @@ class DbHelper extends SQLiteOpenHelper{
 		/*Create the database*/
 		/*Create a table with given parameters*/
 		String sql = String.format("create table %s "+
-				"( _id INTEGER PRIMARY KEY AUTOINCREMENT,%s text,%s int, %s text, %s text, %s text, %s int)", PostData.Table,PostData.C_Title,
-				PostData.C_CREATED_AT,PostData.C_Description,PostData.C_Email,PostData.C_Category,PostData.C_Number);
+				"( _id INTEGER PRIMARY KEY AUTOINCREMENT,%s text,%s int, %s text, %s float, %s float, %s text, %s text, %s int)", PostData.Table,PostData.C_Title,
+				PostData.C_CREATED_AT,PostData.C_Description,PostData.C_Location_X,PostData.C_Location_Y,PostData.C_Email,PostData.C_Category,PostData.C_Number);
 		
 		Log.d(TAG,"onCreate with SQL"+sql);
 		

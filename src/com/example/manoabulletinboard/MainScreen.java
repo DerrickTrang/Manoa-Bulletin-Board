@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -31,14 +32,10 @@ public class MainScreen extends ActionBarActivity {
 	//for testing Server only
 	Button ServerB;
 	
-	ArrayList<Post> post_list;
-
-	static final String[] FROM = {PostData.C_Title, PostData.C_Description, PostData.C_CREATED_AT};
-	static final int[] TO = {R.id.text_user,R.id.text_text,R.id.text_time};
+	ArrayList<Post> post_list = new ArrayList<Post>();
+	CustomAdapter adapter;
 	
-	ListView list;
 	android.database.Cursor cursor;
-	SimpleCursorAdapter adapter;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +51,12 @@ public class MainScreen extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Server a;
-				ResultSet rs;
-				a = new Server(list.getContext());
-				double c,b;
-				c=b=3.5;
-				a.execute("ADD","1","2","3","4","5","6",b,c,"9","10");
+//				Server a;
+//				ResultSet rs;
+//				a = new Server(list.getContext());
+//				double c,b;
+//				c=b=3.5;
+//				a.execute("ADD","1","2","3","4","5","6",b,c,"9","10");
 //				a.execute("DELETE","a","b","c","d");
 //				try{
 //					a.execute("SYNC");
@@ -81,19 +78,15 @@ public class MainScreen extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				cursor = ((PostApp)getApplication()).postdata.query();
-				/*Update cursor*/
-				adapter.changeCursor(cursor);
+				// Refresh the list
+				refreshList();
 			}
         	
         });
         
         /*List View initiation*/
-        list = (ListView)findViewById(R.id.main_screen_scroll_view);
-        adapter = new SimpleCursorAdapter(this, R.layout.post_view, cursor, FROM, TO);
-		
-		/*Set ViewBinder*/
-		adapter.setViewBinder(View_BINDER);
+        final ListView list = (ListView)findViewById(R.id.main_screen_scroll_view);
+        adapter = new CustomAdapter(this, post_list);
 		
 		/*Set adapter*/
 		list.setAdapter(adapter);
@@ -103,39 +96,32 @@ public class MainScreen extends ActionBarActivity {
 		{
 		    @Override 
 		    public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
-		    { 	Cursor c = (Cursor) list.getItemAtPosition(position);
+		    { 	
+//		    	Cursor c = (Cursor) list.getItemAtPosition(position);
+//		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
+//		        intent.putExtra("Title", c.getString(c.getColumnIndex("post_title")));
+//		        Log.d("ManoaBulletinBoard","Added title to intent");
+//		        intent.putExtra("Email", c.getString(c.getColumnIndex("post_email")));
+//		        Log.d("ManoaBulletinBoard","Added email to intent");
+//		        intent.putExtra("Description", c.getString(c.getColumnIndex("post_description")));
+//		        Log.d("ManoaBulletinBoard","Added description to intent");
+//		        startActivity(intent);
+		    	Post p = (Post) list.getItemAtPosition(position);
 		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
-		        intent.putExtra("Title", c.getString(c.getColumnIndex("post_title")));
+		        intent.putExtra("Title", p.getName());
 		        Log.d("ManoaBulletinBoard","Added title to intent");
-		        intent.putExtra("Email", c.getString(c.getColumnIndex("post_email")));
+		        intent.putExtra("Email", p.getContactEmail());
 		        Log.d("ManoaBulletinBoard","Added email to intent");
-		        intent.putExtra("Description", c.getString(c.getColumnIndex("post_description")));
+		        intent.putExtra("Description", p.getDescription());
 		        Log.d("ManoaBulletinBoard","Added description to intent");
 		        startActivity(intent);
+		    	
 		    }
 		});
 		
-		// Refresh screen
-		cursor = ((PostApp)getApplication()).postdata.query();
-		adapter.changeCursor(cursor);
+		// Reresh the listview
+		refreshList();
     }
-
-static final ViewBinder View_BINDER = new ViewBinder(){
-
-		@Override
-		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-			/*If the text from view is not the same 
-			 * as created at, return false */
-			if(view.getId() !=  R.id.text_time)
-				return false;
-			
-			long time = cursor.getLong(cursor.getColumnIndex(PostData.C_CREATED_AT));
-			CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(time);
-			((TextView)view).setText(relativeTime);
-			
-			return true;
-		}
-		};
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -180,10 +166,8 @@ static final ViewBinder View_BINDER = new ViewBinder(){
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
             	if(data.getStringExtra("result").equals("created") == true) {
-    				cursor = ((PostApp)getApplication()).postdata.query();
-    				/*Update cursor*/
-    				adapter.changeCursor(cursor);
-                	Toast toast = Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT);
+            		refreshList();
+            		Toast toast = Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT);
                 	toast.show();
                 }
                 if(data.getStringExtra("result").equals("abort") == true) {
@@ -195,6 +179,30 @@ static final ViewBinder View_BINDER = new ViewBinder(){
                 //Write your code if there's no result
             }
         }
+    }
+    
+    public void refreshList() {		
+    	// Refresh screen
+		cursor = ((PostApp)getApplication()).postdata.query();
+		
+		// Fill arraylist with all the posts in data, and display it
+		if(!post_list.isEmpty()) {
+			Log.d("ManoaBulletBoard","Clearing post list");
+			post_list.clear();
+		}
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			Post temppost = new Post(cursor.getString(cursor.getColumnIndex("post_title")),
+									 cursor.getString(cursor.getColumnIndex("post_description")),
+									 cursor.getString(cursor.getColumnIndex("post_email")),
+									 cursor.getString(cursor.getColumnIndex("post_category")),
+									 cursor.getFloat(cursor.getColumnIndex("post_location_x")),
+									 cursor.getFloat(cursor.getColumnIndex("post_location_y")),
+									 cursor.getInt(cursor.getColumnIndex("post_number")));
+			post_list.add(temppost);
+			cursor.moveToNext();
+		}
+    	adapter.notifyDataSetChanged();
     }
     
 }
