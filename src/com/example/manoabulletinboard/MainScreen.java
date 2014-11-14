@@ -34,6 +34,7 @@ public class MainScreen extends ActionBarActivity {
 	
 	ArrayList<Post> post_list = new ArrayList<Post>();
 	CustomAdapter adapter;
+	String filter_by = "Show_All";
 	
 	android.database.Cursor cursor;
 	
@@ -179,6 +180,13 @@ public class MainScreen extends ActionBarActivity {
                 //Write your code if there's no result
             }
         }
+        if(requestCode == 2) {
+        	Log.d("ManoaBulletinBoard","Requetcode 2, trying to get filter by");
+        	filter_by = data.getExtras().getString("filter");
+        	Log.d("ManoaBulletinBoard","Requetcode 2, got the filter by");
+
+        	refreshList();
+        }
     }
     
     public void refreshList() {		
@@ -191,18 +199,36 @@ public class MainScreen extends ActionBarActivity {
 			post_list.clear();
 		}
 		cursor.moveToFirst();
-		while(!cursor.isAfterLast()) {
-			Post temppost = new Post(cursor.getString(cursor.getColumnIndex("post_title")),
-									 cursor.getString(cursor.getColumnIndex("post_description")),
-									 cursor.getString(cursor.getColumnIndex("post_email")),
-									 cursor.getString(cursor.getColumnIndex("post_category")),
-									 cursor.getFloat(cursor.getColumnIndex("post_location_x")),
-									 cursor.getFloat(cursor.getColumnIndex("post_location_y")),
-									 cursor.getInt(cursor.getColumnIndex("post_number")));
-			post_list.add(temppost);
-			cursor.moveToNext();
+		if(filter_by.matches("Show_All")) {
+			while(!cursor.isAfterLast()) {
+				Post temppost = new Post(cursor.getString(cursor.getColumnIndex("post_title")),
+										cursor.getString(cursor.getColumnIndex("post_description")),
+										cursor.getString(cursor.getColumnIndex("post_email")),
+										cursor.getString(cursor.getColumnIndex("post_category")),
+										cursor.getFloat(cursor.getColumnIndex("post_location_x")),
+										cursor.getFloat(cursor.getColumnIndex("post_location_y")),
+										cursor.getInt(cursor.getColumnIndex("post_number")));
+				post_list.add(temppost);
+				cursor.moveToNext();
+			}
+		}
+		else {
+			while(!cursor.isAfterLast()) {
+				if(cursor.getString(cursor.getColumnIndex("post_category")).matches(filter_by)) {
+					Post temppost = new Post(cursor.getString(cursor.getColumnIndex("post_title")),
+							cursor.getString(cursor.getColumnIndex("post_description")),
+							cursor.getString(cursor.getColumnIndex("post_email")),
+							cursor.getString(cursor.getColumnIndex("post_category")),
+							cursor.getFloat(cursor.getColumnIndex("post_location_x")),
+							cursor.getFloat(cursor.getColumnIndex("post_location_y")),
+							cursor.getInt(cursor.getColumnIndex("post_number")));
+					post_list.add(temppost);
+				}
+				cursor.moveToNext();
+			}
 		}
     	adapter.notifyDataSetChanged();
+		
     }
     
 }

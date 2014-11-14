@@ -27,7 +27,10 @@ public class CategoriesScreen extends ActionBarActivity {
 		showAll.setOnClickListener(new View.OnClickListener () {
 			@Override
 			public void onClick(View v) {
-				sortByShowAll();
+				Intent returnIntent = new Intent();
+				returnIntent.putExtra("filter","Show_All");
+				setResult(RESULT_OK, returnIntent);
+				finish();
 			}
 		});
 		
@@ -35,7 +38,10 @@ public class CategoriesScreen extends ActionBarActivity {
 		foodTruck.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View v) {
-						sortByFoodTruck();
+						Intent returnIntent = new Intent();
+						returnIntent.putExtra("filter","Food Truck");
+						setResult(RESULT_OK, returnIntent);
+						finish();
 					}
 		        	
 		        });			
@@ -44,7 +50,10 @@ public class CategoriesScreen extends ActionBarActivity {
 		club.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View v) {
-						sortByClub();
+						Intent returnIntent = new Intent();
+						returnIntent.putExtra("filter","Club");
+						setResult(RESULT_OK, returnIntent);
+						finish();
 					}
 		        	
 		        });		
@@ -68,28 +77,4 @@ public class CategoriesScreen extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-
-	public void sortByShowAll() {
-		// Show everything in list/remove any sorting
-		// For now, just return to main screen
-		Intent returnIntent = new Intent();
-		setResult(RESULT_OK, returnIntent);
-		finish();
-	}
-	
-	public void sortByFoodTruck() {
-		// sort list by food truck (maybe return an int value or string to main screen)
-		// For now, just return to main screen
-		Intent returnIntent = new Intent();
-		setResult(RESULT_OK, returnIntent);
-		finish();	}
-
-	public void sortByClub() {
-		// sort list by club (maybe return an int value or string to main screen)
-		// For now, just return to main screen
-		Intent returnIntent = new Intent();
-		setResult(RESULT_OK, returnIntent);
-		finish();	}
-
 }
