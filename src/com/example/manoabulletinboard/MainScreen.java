@@ -1,31 +1,25 @@
 package com.example.manoabulletinboard;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.SimpleCursorAdapter.ViewBinder;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainScreen extends ActionBarActivity {
 
+	EditText SearchText;
 	Button SearchButton;
 	Button Refresh;
 	
@@ -42,6 +36,7 @@ public class MainScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
+        SearchText = (EditText) findViewById(R.id.search_text);
         SearchButton = (Button) findViewById(R.id.search_button);
         Refresh = (Button)findViewById(R.id.refresh_button);
         
@@ -73,6 +68,20 @@ public class MainScreen extends ActionBarActivity {
 			}
 		});
         //********************************************
+        
+        SearchButton.setEnabled(true);
+        SearchButton.setOnClickListener(new View.OnClickListener() {
+        	
+        	@Override
+        	public void onClick(View v) {
+        		// fix later
+        		//for(Post post : post_list) {
+        		//	if(post.getName().contains(SearchText.getText()toString() != -1)
+        		//}
+        		Toast toast = Toast.makeText(getApplicationContext(), SearchText.getText().toString(), Toast.LENGTH_SHORT);
+            	toast.show();
+        	}
+        });
         
         Refresh.setEnabled(true);
         Refresh.setOnClickListener(new View.OnClickListener(){
