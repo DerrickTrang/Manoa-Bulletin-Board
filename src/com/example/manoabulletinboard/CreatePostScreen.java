@@ -3,6 +3,7 @@ package com.example.manoabulletinboard;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +64,8 @@ public class CreatePostScreen extends Activity{
 				
 				/*insert into the database*/
 				((PostApp)getApplication()).postdata.insert(UserPost);
+				((PostApp)getApplication()).AddEvent(UserPost);
+				
 				
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("result", "created");
@@ -94,9 +97,14 @@ public class CreatePostScreen extends Activity{
 	}
 	
 	public Post storeViewToObject(){
-		Post UserPost = new Post(Title.getText().toString(),
-				Description.getText().toString(),Email.getText().toString(),
-				Category.getSelectedItem().toString(),Location_x,Location_y,Contact_Number);
+		
+		
+		Post UserPost = new Post(Title.getContext(), 1, Title.getText().toString(),
+				"2014-11-15","02:55:00","03:55:00",0,0,"Post 208",Description.getText().toString(),Email.getText().toString(),46709394,Category.getSelectedItem().toString());
+		
+//		Post UserPost = new Post(Title.getText().toString(),
+//				Description.getText().toString(),Email.getText().toString(),
+//				Category.getSelectedItem().toString(),Location_x,Location_y,Contact_Number);
 		
 		/*Log is a Debugging tool, error detection etc.*/
 		Log.d("create_edit","store_view_to_object");

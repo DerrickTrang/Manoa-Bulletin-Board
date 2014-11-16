@@ -43,6 +43,9 @@ public class MainScreen extends ActionBarActivity {
         setContentView(R.layout.main_screen);
         SearchButton = (Button) findViewById(R.id.search_button);
         Refresh = (Button)findViewById(R.id.refresh_button);
+
+        //pasing context into the application for showing dialog. (turns out only the serachbutton context works)
+		((PostApp)getApplication()).setContext(SearchButton.getContext());
         
         //for testing Server only *******************
         ServerB = (Button)findViewById(R.id.button1);
@@ -51,24 +54,8 @@ public class MainScreen extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-//				Server a;
-//				ResultSet rs;
-//				a = new Server(list.getContext());
-//				double c,b;
-//				c=b=3.5;
-//				a.execute("ADD","1","2","3","4","5","6",b,c,"9","10");
-//				a.execute("DELETE","a","b","c","d");
-//				try{
-//					a.execute("SYNC");
-//					rs=a.get(5000, TimeUnit.MILLISECONDS);
-//					while(rs.next())
-//					{
-//						Log.i("Server Return",String.valueOf(rs.getInt(1)));
-//					}
-//				} catch (Exception e)
-//				{
-//					e.printStackTrace();
-//				}
+
+				((PostApp)getApplication()).SyncEvent();
 			}
 		});
         //********************************************
@@ -184,7 +171,7 @@ public class MainScreen extends ActionBarActivity {
     public void refreshList() {		
     	// Refresh screen
 		cursor = ((PostApp)getApplication()).postdata.query();
-		
+
 		// Fill arraylist with all the posts in data, and display it
 		if(!post_list.isEmpty()) {
 			Log.d("ManoaBulletBoard","Clearing post list");
@@ -192,13 +179,14 @@ public class MainScreen extends ActionBarActivity {
 		}
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			Post temppost = new Post(cursor.getString(cursor.getColumnIndex("post_title")),
-									 cursor.getString(cursor.getColumnIndex("post_description")),
-									 cursor.getString(cursor.getColumnIndex("post_email")),
-									 cursor.getString(cursor.getColumnIndex("post_category")),
-									 cursor.getFloat(cursor.getColumnIndex("post_location_x")),
-									 cursor.getFloat(cursor.getColumnIndex("post_location_y")),
-									 cursor.getInt(cursor.getColumnIndex("post_number")));
+			Log.i("Database",cursor.getString(cursor.getColumnIndex(PostData.C_ID)));
+			Post temppost = new Post(cursor.getString(cursor.getColumnIndex(PostData.C_Title)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Description)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Email)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Category)),
+									 cursor.getFloat(cursor.getColumnIndex(PostData.C_Location_X)),
+									 cursor.getFloat(cursor.getColumnIndex(PostData.C_Location_Y)),
+									 cursor.getInt(cursor.getColumnIndex(PostData.C_Number)));
 			post_list.add(temppost);
 			cursor.moveToNext();
 		}
