@@ -35,56 +35,22 @@ public class PostApp extends Application implements ServerProgreeDialog{
 	public boolean AddEvent(Post post)
 	{
 		new Server(this).execute("ADDSYNC",post);
-		//Delete local Data before adding new data from server
-		
-		postdata.FlushAll();
-		try 
-		{
-			Post Newpost;
-			
-			while(ServerData.next())
-			{
-				int ID = ServerData.getInt(PostData.C_ID);
-				String Title = ServerData.getString(PostData.C_Title);
-				String EventDate = ServerData.getString(PostData.C_EventDate);
-				String StartTime = ServerData.getString(PostData.C_StartTime);
-				String EndTime = ServerData.getString(PostData.C_EndTime);
-				float LocationX = ServerData.getFloat(PostData.C_Location_X);
-				float LocationY = ServerData.getFloat(PostData.C_Location_Y);
-				String Location = ServerData.getString(PostData.C_Location);
-				String Description = ServerData.getString(PostData.C_Description);
-				String Email = ServerData.getString(PostData.C_Email);
-				int Number = ServerData.getInt(PostData.C_Number);
-				String Category = ServerData.getString(PostData.C_Category);
-				
-				Newpost = new Post(context,ID,Title,EventDate,StartTime,EndTime,LocationX,LocationY,Location,Description,Email,Number,Category);
-
-				postdata.insert(Newpost);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
 		return true;
 	}
 	
 	//Sync event mean synchronize events from the server to local, NEVER does the opposite.
 	public boolean SyncEvent()
 	{
-		Log.i("d","h1");
-		//Delete local Data before adding new data from server
-		postdata.FlushAll();
-		Log.i("d","h2");
 		try 
 		{
 			Post Newpost;
-			Log.i("d","h3");
 			new Server(this).execute("SYNC");
-
-			Log.i("d","h4");
+			
 			while(ServerData.next())
 			{
+				if(ServerData.isFirst())
+				postdata.FlushAll();
+				
 				Log.i("d","h5");
 				int ID = ServerData.getInt(PostData.C_ID);
 				String Title = ServerData.getString(PostData.C_Title);
