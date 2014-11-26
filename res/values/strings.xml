@@ -14,6 +14,7 @@
     <string name="title_activity_create_post_screen">Create a Post</string>
     <string name="create_post_screen_title">Title</string>
     <string name="create_post_screen_email">Contact Email</string>
+    <string name="create_post_screen_number">Contact Number</string>
     <string name="create_post_screen_description">Description</string>
 
     <string-array name="create_post_screen_categories">

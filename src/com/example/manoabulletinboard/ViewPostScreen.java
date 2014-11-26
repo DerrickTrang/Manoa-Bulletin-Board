@@ -1,13 +1,21 @@
 package com.example.manoabulletinboard;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class ViewPostScreen extends ActionBarActivity {
 
+	private GoogleMap map;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,6 +29,18 @@ public class ViewPostScreen extends ActionBarActivity {
 		view_post_screen_title.setText(ViewPostTitle);
 		view_post_screen_email.setText("Contact Email: " + ViewPostEmail);
 		view_post_screen_description.setText(ViewPostDescription);
+		MapFragment tempFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+		double locationx = getIntent().getExtras().getDouble("Location_x");
+		double locationy = getIntent().getExtras().getDouble("Location_y");
+		
+		map = tempFrag.getMap();
+		
+		if(map != null) {
+			LatLng post_position = new LatLng(locationy, locationx);
+			map.moveCamera(CameraUpdateFactory.newLatLng(post_position));
+			map.moveCamera(CameraUpdateFactory.zoomTo(16));
+			map.addMarker(new MarkerOptions().position(post_position));
+		}
 	}
 
 	@Override

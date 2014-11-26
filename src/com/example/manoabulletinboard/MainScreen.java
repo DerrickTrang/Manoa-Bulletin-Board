@@ -101,6 +101,8 @@ public class MainScreen extends ActionBarActivity {
 		        Log.d("ManoaBulletinBoard","Added email to intent");
 		        intent.putExtra("Description", p.getDescription());
 		        Log.d("ManoaBulletinBoard","Added description to intent");
+		        intent.putExtra("Location_x", p.getLocationX());
+		        intent.putExtra("Location_y",p.getLocationY());
 		        startActivity(intent);
 		    	
 		    }
@@ -184,8 +186,8 @@ public class MainScreen extends ActionBarActivity {
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Description)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Email)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Category)),
-									 cursor.getFloat(cursor.getColumnIndex(PostData.C_Location_X)),
-									 cursor.getFloat(cursor.getColumnIndex(PostData.C_Location_Y)),
+									 cursor.getDouble(cursor.getColumnIndex(PostData.C_Location_X)),
+									 cursor.getDouble(cursor.getColumnIndex(PostData.C_Location_Y)),
 									 cursor.getInt(cursor.getColumnIndex(PostData.C_Number)));
 			post_list.add(temppost);
 			cursor.moveToNext();

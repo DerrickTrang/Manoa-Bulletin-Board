@@ -27,6 +27,13 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/create_post_screen_email" />
+        <EditText
+            android:id="@+id/create_post_screen_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/create_post_screen_number" />
 
         <Spinner
             android:id="@+id/create_post_screen_categories"
@@ -41,7 +48,11 @@
             android:ems="10"
             android:inputType="textMultiLine"
             android:hint="@string/create_post_screen_description" />
-
+		<fragment
+    		class="com.google.android.gms.maps.MapFragment"
+    		android:id="@+id/createScreenMap"
+    		android:layout_width="match_parent"
+    		android:layout_height="250dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
