@@ -45,11 +45,12 @@
             android:id="@+id/refresh_button" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    <!-- probably dont need this button anymore -->
+<!--     <Button -->
+<!--         android:id="@+id/button1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:text="Button" /> -->
 
     <ListView 
         android:layout_width="fill_parent"
