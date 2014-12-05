@@ -110,7 +110,7 @@ class DbHelper extends SQLiteOpenHelper{
 		/*Create the database*/
 		/*Create a table with given parameters*/
 		String sql = String.format("create table %s "+ "( %s INTEGER,%s text, %s text, %s text, " +
-									"%s text, %s text, %s text, %s float, %s float, " +
+									"%s text, %s text, %s text, %s double, %s double, " +
 									"%s text, %s text, %s text, %s int, %s text)", 
 				PostData.Table, PostData.C_ID, PostData.C_IMEI, PostData.C_Title, PostData.C_PostDate,
 				PostData.C_EventDate, PostData.C_StartTime, PostData.C_EndTime, PostData.C_Location_X, PostData.C_Location_Y, 

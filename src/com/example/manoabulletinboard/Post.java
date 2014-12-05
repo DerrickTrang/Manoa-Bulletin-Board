@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class Post {
 	private String IMEI, Title, PostDate, EventDate, StartTime, EndTime, description, contact_email, category,Location;
-	private float location_x, location_y;
+	private double location_x, location_y;
 	private int contact_number, ID;
 	// Needs something for time/date - create new Time class or use ints?
 	
@@ -33,7 +33,7 @@ public class Post {
 
 	//maybe delete later
 	public Post(String title, String Description, String Contact_email, 
-			String Category, float Location_x, float Location_y, int Contact_number) {
+			String Category, double Location_x, double Location_y, int Contact_number) {
 		Title = title;
 		description = Description;
 		contact_email = Contact_email;
@@ -44,7 +44,7 @@ public class Post {
 	}
 
 	//generate postdate, imei while inserting the post into database, not here.
-	public Post(Context c, int id, String title, String eventdate, String starttime, String endtime, float locationx, float locationy, String location, String Description, String email, int number, String Category)
+	public Post(Context c, int id, String title, String eventdate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, int number, String Category)
 	{
 		Calendar Ca = Calendar.getInstance(Locale.US); 
 		String year = String.valueOf(Ca.get(Calendar.YEAR));
@@ -111,11 +111,11 @@ public class Post {
 		return EndTime;
 	}
 	
-	float getLocationX() {
+	double getLocationX() {
 		return location_x;
 	}
 	
-	float getLocationY() {
+	double getLocationY() {
 		return location_y;
 	}
 	
@@ -161,11 +161,11 @@ public class Post {
 		EndTime = Time;
 	}
 
-	void setLocationX(float Location_x) {
+	void setLocationX(double Location_x) {
 		location_x = Location_x;
 	}
 	
-	void setLocationY(float Location_y) {
+	void setLocationY(double Location_y) {
 		location_y = Location_y;
 	}
 	

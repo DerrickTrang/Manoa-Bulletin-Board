@@ -47,17 +47,16 @@ public class MainScreen extends ActionBarActivity {
         //pasing context into the application for showing dialog. (turns out only the serachbutton context works)
 		((PostApp)getApplication()).setContext(SearchButton.getContext());
         
-        //for testing Server only *******************
-        ServerB = (Button)findViewById(R.id.button1);
-        ServerB.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				((PostApp)getApplication()).SyncEvent();
-			}
-		});
+        //for testing Server only ******************* ADDED IMPLEMENTATION TO REFRESHLIST METHOD
+//        ServerB = (Button)findViewById(R.id.button1);
+//        ServerB.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				((PostApp)getApplication()).SyncEvent();
+//			}
+//		});
         //********************************************
         
         Refresh.setEnabled(true);
@@ -84,15 +83,6 @@ public class MainScreen extends ActionBarActivity {
 		    @Override 
 		    public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
 		    { 	
-//		    	Cursor c = (Cursor) list.getItemAtPosition(position);
-//		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
-//		        intent.putExtra("Title", c.getString(c.getColumnIndex("post_title")));
-//		        Log.d("ManoaBulletinBoard","Added title to intent");
-//		        intent.putExtra("Email", c.getString(c.getColumnIndex("post_email")));
-//		        Log.d("ManoaBulletinBoard","Added email to intent");
-//		        intent.putExtra("Description", c.getString(c.getColumnIndex("post_description")));
-//		        Log.d("ManoaBulletinBoard","Added description to intent");
-//		        startActivity(intent);
 		    	Post p = (Post) list.getItemAtPosition(position);
 		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
 		        intent.putExtra("Title", p.getName());
@@ -101,13 +91,15 @@ public class MainScreen extends ActionBarActivity {
 		        Log.d("ManoaBulletinBoard","Added email to intent");
 		        intent.putExtra("Description", p.getDescription());
 		        Log.d("ManoaBulletinBoard","Added description to intent");
+		        intent.putExtra("Location_x", p.getLocationX());
+		        intent.putExtra("Location_y",p.getLocationY());
 		        startActivity(intent);
 		    	
 		    }
 		});
 		
-		// Reresh the listview
-		refreshList();
+		cursor = ((PostApp)getApplication()).postdata.query();
+		// Add something to make it refresh the list on create
     }
     
     @Override
@@ -153,7 +145,7 @@ public class MainScreen extends ActionBarActivity {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
             	if(data.getStringExtra("result").equals("created") == true) {
-            		refreshList();
+            		// refreshList(); broken atm, add something that refreshes whole list after creating event
             		Toast toast = Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT);
                 	toast.show();
                 }
@@ -164,11 +156,22 @@ public class MainScreen extends ActionBarActivity {
             }
             if (resultCode == RESULT_CANCELED) {
                 //Write your code if there's no result
+            	Toast toast = Toast.makeText(getApplicationContext(), "Event not created", Toast.LENGTH_SHORT);
+            	toast.show();
             }
         }
     }
     
-    public void refreshList() {		
+    public void refreshList() {
+    	Log.d("ManoaBulletinBoard","Refreshing...");
+    	try {
+    	// Sync internal database
+		((PostApp)getApplication()).SyncEvent();
+    	}
+    	catch (NullPointerException e) {
+        	Toast toast = Toast.makeText(getApplicationContext(), "Can't refresh", Toast.LENGTH_SHORT);
+        	toast.show();
+        }
     	// Refresh screen
 		cursor = ((PostApp)getApplication()).postdata.query();
 
@@ -184,13 +187,14 @@ public class MainScreen extends ActionBarActivity {
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Description)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Email)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Category)),
-									 cursor.getFloat(cursor.getColumnIndex(PostData.C_Location_X)),
-									 cursor.getFloat(cursor.getColumnIndex(PostData.C_Location_Y)),
+									 cursor.getDouble(cursor.getColumnIndex(PostData.C_Location_X)),
+									 cursor.getDouble(cursor.getColumnIndex(PostData.C_Location_Y)),
 									 cursor.getInt(cursor.getColumnIndex(PostData.C_Number)));
 			post_list.add(temppost);
 			cursor.moveToNext();
 		}
     	adapter.notifyDataSetChanged();
+    	Log.d("ManoaBulletinBoard","Done refreshing");
     }
     
 }

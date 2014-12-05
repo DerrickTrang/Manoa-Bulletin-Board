@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,19 +7,55 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:focusable="true"
+	android:focusableInTouchMode="true"
     tools:context="com.example.manoabulletinboard.MainScreen" >
-
-        <EditText
-            android:id="@+id/create_post_screen_title"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/submit_cancel" >
+        <Button
+            android:id="@+id/create_post_screen_submit"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/create_post_screen_title" >
-
-            <requestFocus />
-        </EditText>
-
+            android:layout_weight="1"
+            android:text="@string/create_post_screen_submit" />
+        <Button 
+            android:id="@+id/create_post_screen_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/create_post_screen_cancel"/>
+    </LinearLayout>
+    
+    <ScrollView android:id="@+id/scrollView1"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent"
+        android:layout_above="@id/submit_cancel">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+               	<EditText
+        	android:id="@+id/create_post_screen_title"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:ems="10"
+        	android:inputType="textPersonName"
+        	android:hint="@string/create_post_screen_title" />
+         	<Spinner
+            	android:id="@+id/create_post_screen_categories"
+            	android:layout_width="125dp"
+            	android:layout_height="wrap_content"
+            	android:entries="@array/create_post_screen_categories" />
+        </LinearLayout>
         <EditText
             android:id="@+id/create_post_screen_email"
             android:layout_width="match_parent"
@@ -27,35 +63,127 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/create_post_screen_email" />
-
-        <Spinner
-            android:id="@+id/create_post_screen_categories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/create_post_screen_categories" />
-
         <EditText
-            android:id="@+id/create_post_screen_description"
+            android:id="@+id/create_post_screen_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textMultiLine"
-            android:hint="@string/create_post_screen_description" />
-
+            android:inputType="textPersonName"
+            android:hint="@string/create_post_screen_number" />
+        
+        <!-- START DATE LAYOUT -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-        <Button
-            android:id="@+id/create_post_screen_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create_post_screen_submit" />
-        <Button 
-            android:id="@+id/create_post_screen_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create_post_screen_cancel"/>
+        	<TextView
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+        		android:layout_weight="1"
+        		android:text="@string/create_post_screen_start_date" />
+            <Spinner
+            	android:id="@+id/create_post_screen_start_month"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_month" />
+                <Spinner
+            	android:id="@+id/create_post_screen_start_day"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_day" />
+                <Spinner
+            	android:id="@+id/create_post_screen_start_year"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_year" />        
         </LinearLayout>
-    
-</LinearLayout>
+		        
+		<!-- START TIME LAYOUT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        	<TextView
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+        		android:layout_weight="1"
+        		android:text="@string/create_post_screen_start_time" />
+            <Spinner
+            	android:id="@+id/create_post_screen_start_hour"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_hour" />
+            <Spinner
+            	android:id="@+id/create_post_screen_start_minute"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_minute" />
+            <Spinner
+            	android:id="@+id/create_post_screen_start_ampm"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_ampm" />
+        </LinearLayout>
+        
+		<!-- END TIME LAYOUT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        	<TextView
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+        		android:layout_weight="1"
+        		android:text="@string/create_post_screen_end_time" />
+            <Spinner
+            	android:id="@+id/create_post_screen_end_hour"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_hour" />
+            <Spinner
+            	android:id="@+id/create_post_screen_end_minute"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_minute" />
+            <Spinner
+            	android:id="@+id/create_post_screen_end_ampm"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            	android:entries="@array/create_post_screen_ampm" />
+        </LinearLayout>
+		    
+        	<EditText
+        	    android:id="@+id/create_post_screen_description"
+        	    android:layout_width="match_parent"
+        	    android:layout_height="wrap_content"
+        	    android:ems="10"
+        	    android:inputType="textMultiLine"
+        	    android:hint="@string/create_post_screen_description" />
+        <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" >    
+		<fragment
+    		class="com.google.android.gms.maps.MapFragment"
+    		android:id="@+id/createScreenMap"
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent"/>
+		<ImageView
+            android:id="@+id/transparent_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:color/transparent" />  
+		</RelativeLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -145,8 +145,8 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 		String EventDate = post.getEventDate();
 		String StartTime = post.getStartTime();
 		String EndTime = post.getEndTime();
-		float Co_x = post.getLocationX();
-		float Co_y = post.getLocationY();
+		double Co_x = post.getLocationX();
+		double Co_y = post.getLocationY();
 		String Location = post.getLocation();
 		String Description = post.getDescription();
 		String Contact_email = post.getContactEmail();

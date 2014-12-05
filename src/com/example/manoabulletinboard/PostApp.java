@@ -49,8 +49,8 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				String EventDate = ServerData.getString(PostData.C_EventDate);
 				String StartTime = ServerData.getString(PostData.C_StartTime);
 				String EndTime = ServerData.getString(PostData.C_EndTime);
-				float LocationX = ServerData.getFloat(PostData.C_Location_X);
-				float LocationY = ServerData.getFloat(PostData.C_Location_Y);
+				double LocationX = ServerData.getDouble(PostData.C_Location_X);
+				double LocationY = ServerData.getDouble(PostData.C_Location_Y);
 				String Location = ServerData.getString(PostData.C_Location);
 				String Description = ServerData.getString(PostData.C_Description);
 				String Email = ServerData.getString(PostData.C_Email);
@@ -91,8 +91,8 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				String EventDate = ServerData.getString(PostData.C_EventDate);
 				String StartTime = ServerData.getString(PostData.C_StartTime);
 				String EndTime = ServerData.getString(PostData.C_EndTime);
-				float LocationX = ServerData.getFloat(PostData.C_Location_X);
-				float LocationY = ServerData.getFloat(PostData.C_Location_Y);
+				double LocationX = ServerData.getDouble(PostData.C_Location_X);
+				double LocationY = ServerData.getDouble(PostData.C_Location_Y);
 				String Location = ServerData.getString(PostData.C_Location);
 				String Description = ServerData.getString(PostData.C_Description);
 				String Email = ServerData.getString(PostData.C_Email);
