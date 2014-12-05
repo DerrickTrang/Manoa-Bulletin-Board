@@ -50,13 +50,16 @@ public class Post {
 		String year = String.valueOf(Ca.get(Calendar.YEAR));
 		String month = String.valueOf(Ca.get(Calendar.MONTH)+1);
 		String date = String.valueOf(Ca.get(Calendar.DATE));
+		String hour = String.valueOf(Ca.get(Calendar.HOUR_OF_DAY));
+		String minute = String.valueOf(Ca.get(Calendar.MINUTE));
+		String second = String.valueOf(Ca.get(Calendar.SECOND));
 
 		ID = id; 
 		//Unique Android ID
 		IMEI = Secure.getString(c.getContentResolver(),Secure.ANDROID_ID);
 		Title = title;
 		//MYSQL date datatype format: YYYY-MM-DD
-		PostDate = year + "-" + month + "-" + date;
+		PostDate = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
 		EventDate = eventdate;
 		StartTime = starttime;
 		EndTime = endtime;

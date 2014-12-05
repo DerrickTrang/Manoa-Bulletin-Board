@@ -26,7 +26,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CreatePostScreen extends ActionBarActivity implements OnMapClickListener, OnCameraChangeListener {
 	/*Attribute declaration*/
-	int test;
 	boolean markerPresent;
 	Marker postLocation;
 	TextView Title;
@@ -254,7 +253,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 			Contact_Number = 0;
 		else
 			Contact_Number = Integer.parseInt(Number.getText().toString());
-			
+		
 		Post UserPost = new Post(
 				Title.getContext(), 			// Context
 				1, 								// ID
