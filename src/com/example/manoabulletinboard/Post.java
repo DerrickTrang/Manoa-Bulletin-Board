@@ -8,9 +8,9 @@ import android.provider.Settings.Secure;
 import android.util.Log;
 
 public class Post {
-	private String IMEI, Title, PostDate, EventDate, StartTime, EndTime, description, contact_email, category,Location;
+	private String IMEI, Title, PostDate, StartDate, EndDate, StartTime, EndTime, description, contact_email, contact_number, category,Location;
 	private double location_x, location_y;
-	private int contact_number, ID;
+	private int ID;
 	// Needs something for time/date - create new Time class or use ints?
 	
 	// Constructors
@@ -19,32 +19,21 @@ public class Post {
 		IMEI = "";
 		Title = "";
 		PostDate = "0000-00-00";
-		EventDate = "0000-00-00";
+		StartDate = "0000-00-00";
+		EndDate = "0000-00-00";
 		StartTime = "00:00:00";
 		EndTime = "00:00:00";
 		description = "";
 		contact_email = "";
-		contact_number = 0;
+		contact_number = "000-000-0000";
 		category = "";
 		Location = "";
 		location_x = 0;
 		location_y = 0;
 	}
 
-	//maybe delete later
-	public Post(String title, String Description, String Contact_email, 
-			String Category, double Location_x, double Location_y, int Contact_number) {
-		Title = title;
-		description = Description;
-		contact_email = Contact_email;
-		contact_number = Contact_number;
-		category = Category;
-		location_x = Location_x;
-		location_y = Location_y;
-	}
-
 	//generate postdate, imei while inserting the post into database, not here.
-	public Post(Context c, int id, String title, String eventdate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, int number, String Category)
+	public Post(Context c, int id, String title, String startdate, String enddate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, String number, String Category)
 	{
 		Calendar Ca = Calendar.getInstance(Locale.US); 
 		String year = String.valueOf(Ca.get(Calendar.YEAR));
@@ -60,7 +49,8 @@ public class Post {
 		Title = title;
 		//MYSQL date datatype format: YYYY-MM-DD
 		PostDate = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
-		EventDate = eventdate;
+		StartDate = startdate;
+		EndDate = enddate;
 		StartTime = starttime;
 		EndTime = endtime;
 		location_x = locationx;
@@ -102,8 +92,12 @@ public class Post {
 		return PostDate;
 	}
 	
-	String getEventDate(){
-		return EventDate;
+	String getStartDate(){
+		return StartDate;
+	}
+	
+	String getEndDate(){
+		return EndDate;
 	}
 	
 	String getStartTime(){
@@ -134,7 +128,7 @@ public class Post {
 		return contact_email;
 	}
 
-	int getContactNumber() {
+	String getContactNumber() {
 		return contact_number;
 	}
 	
@@ -152,8 +146,12 @@ public class Post {
 		Title = Name;
 	}
 	
-	void setEventDate(String Date){
-		EventDate = Date;
+	void setStartDate(String Date){
+		StartDate = Date;
+	}
+	
+	void setEndDate(String Date){
+		EndDate = Date;
 	}
 	
 	void setStartTime(String Time){
@@ -184,7 +182,7 @@ public class Post {
 		contact_email = Contact_email;
 	}
 
-	void setContactNumber(int Contact_number) {
+	void setContactNumber(String Contact_number) {
 		contact_number = Contact_number;
 	}
 	

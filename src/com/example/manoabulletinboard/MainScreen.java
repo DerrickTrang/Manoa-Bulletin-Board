@@ -3,6 +3,7 @@ package com.example.manoabulletinboard;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -227,13 +228,20 @@ public class MainScreen extends ActionBarActivity {
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
 			Log.i("Database",cursor.getString(cursor.getColumnIndex(PostData.C_ID)));
-			Post temppost = new Post(cursor.getString(cursor.getColumnIndex(PostData.C_Title)),
-									 cursor.getString(cursor.getColumnIndex(PostData.C_Description)),
-									 cursor.getString(cursor.getColumnIndex(PostData.C_Email)),
-									 cursor.getString(cursor.getColumnIndex(PostData.C_Category)),
+			Post temppost = new Post(SearchButton.getContext(),
+									 cursor.getInt(cursor.getColumnIndex(PostData.C_ID)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Title)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_StartDate)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_EndDate)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_StartTime)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_EndTime)),
 									 cursor.getDouble(cursor.getColumnIndex(PostData.C_Location_X)),
 									 cursor.getDouble(cursor.getColumnIndex(PostData.C_Location_Y)),
-									 cursor.getInt(cursor.getColumnIndex(PostData.C_Number)));
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Location)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Description)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Email)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Number)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_Category)));
 			post_list.add(temppost);
 			cursor.moveToNext();
 		}

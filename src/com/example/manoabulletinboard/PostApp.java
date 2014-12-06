@@ -54,7 +54,8 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				Log.i("d","h5");
 				int ID = ServerData.getInt(PostData.C_ID);
 				String Title = ServerData.getString(PostData.C_Title);
-				String EventDate = ServerData.getString(PostData.C_EventDate);
+				String StartDate = ServerData.getString(PostData.C_StartDate);
+				String EndDate = ServerData.getString(PostData.C_EndDate);
 				String StartTime = ServerData.getString(PostData.C_StartTime);
 				String EndTime = ServerData.getString(PostData.C_EndTime);
 				double LocationX = ServerData.getDouble(PostData.C_Location_X);
@@ -62,10 +63,10 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				String Location = ServerData.getString(PostData.C_Location);
 				String Description = ServerData.getString(PostData.C_Description);
 				String Email = ServerData.getString(PostData.C_Email);
-				int Number = ServerData.getInt(PostData.C_Number);
+				String Number = ServerData.getString(PostData.C_Number);
 				String Category = ServerData.getString(PostData.C_Category);
 
-				Newpost = new Post(context,ID,Title,EventDate,StartTime,EndTime,LocationX,LocationY,Location,Description,Email,Number,Category);
+				Newpost = new Post(context,ID,Title,StartDate,EndDate,StartTime,EndTime,LocationX,LocationY,Location,Description,Email,Number,Category);
 
 				postdata.insert(Newpost);
 			}

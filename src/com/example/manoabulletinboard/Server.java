@@ -142,7 +142,8 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 		String IMEI = post.getIMEI();
 		String Title = post.getName();
 		String PostDate = post.getPostDate();
-		String EventDate = post.getEventDate();
+		String StartDate = post.getStartDate();
+		String EndDate = post.getEndDate();
 		String StartTime = post.getStartTime();
 		String EndTime = post.getEndTime();
 		double Co_x = post.getLocationX();
@@ -150,14 +151,14 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 		String Location = post.getLocation();
 		String Description = post.getDescription();
 		String Contact_email = post.getContactEmail();
-		int Contact_number = post.getContactNumber();
+		String Contact_number = post.getContactNumber();
 		String Category = post.getCategory();
 		 
 		int updated_rows = 0;
 		try {
 			updated_rows = stmt.executeUpdate("INSERT INTO `" + DATABASE_NAME + "`.`" + DATABASE_TABLE + "` " +
-											"(`IMEI`, `Title`, `PostDate`, `EventDate`, `StartTime`, `EndTime`, `Co_X`, `Co_Y`, `Location`, `Description`, `Contact_email`, `Contact_number`, `Category`) " +
-									 "VALUES ('"+IMEI+"', '"+Title+"', '"+PostDate+"', '"+EventDate+"', '"+StartTime+"', '"+EndTime+"', '"+Co_x+"', '"+Co_y+"', '"+Location+"', '"+Description+"', '"+Contact_email+"', '"+Contact_number+"', '"+Category+"');");
+											"(`IMEI`, `Title`, `PostDate`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Co_X`, `Co_Y`, `Location`, `Description`, `Contact_email`, `Contact_number`, `Category`) " +
+									 "VALUES ('"+IMEI+"', '"+Title+"', '"+PostDate+"', '"+StartDate+"', '"+EndDate+"', '"+StartTime+"', '"+EndTime+"', '"+Co_x+"', '"+Co_y+"', '"+Location+"', '"+Description+"', '"+Contact_email+"', '"+Contact_number+"', '"+Category+"');");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
