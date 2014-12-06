@@ -511,7 +511,6 @@ int id production 0x7f080007
 int id progress_circular 0x7f08002d
 int id progress_horizontal 0x7f08002e
 int id radio 0x7f08003d
-int id refresh_button 0x7f08006a
 int id relativeLayout1 0x7f080066
 int id sandbox 0x7f080008
 int id satellite 0x7f080002
@@ -536,6 +535,7 @@ int id split_action_bar 0x7f08002a
 int id strict_sandbox 0x7f080009
 int id submit_area 0x7f08004e
 int id submit_cancel 0x7f080054
+int id swipe_container 0x7f08006a
 int id tabMode 0x7f080015
 int id terrain 0x7f080003
 int id text_text 0x7f08006d
@@ -583,8 +583,10 @@ int layout support_simple_spinner_dropdown_item 0x7f03001b
 int layout view_post_screen 0x7f03001c
 int menu categories_screen 0x7f0d0000
 int menu create_post_screen 0x7f0d0001
-int menu main_screen 0x7f0d0002
-int menu view_post_screen 0x7f0d0003
+int menu fragment_test 0x7f0d0002
+int menu main 0x7f0d0003
+int menu main_screen 0x7f0d0004
+int menu view_post_screen 0x7f0d0005
 int string abc_action_bar_home_description 0x7f060024
 int string abc_action_bar_home_description_format 0x7f060028
 int string abc_action_bar_home_subtitle_description_format 0x7f060029

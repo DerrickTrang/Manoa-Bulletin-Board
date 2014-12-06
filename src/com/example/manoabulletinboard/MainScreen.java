@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -41,8 +44,9 @@ public class MainScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
+        	
         SearchButton = (Button) findViewById(R.id.search_button);
-        Refresh = (Button)findViewById(R.id.refresh_button);
+        //Refresh = (Button)findViewById(R.id.refresh_button);
 
         //pasing context into the application for showing dialog. (turns out only the serachbutton context works)
 		((PostApp)getApplication()).setContext(SearchButton.getContext());
@@ -59,16 +63,16 @@ public class MainScreen extends ActionBarActivity {
 //		});
         //********************************************
         
-        Refresh.setEnabled(true);
-        Refresh.setOnClickListener(new View.OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// Refresh the list
-				refreshList();
-			}
-        	
-        });
+//        Refresh.setEnabled(true);
+//        Refresh.setOnClickListener(new View.OnClickListener(){
+//
+//			@Override
+//			public void onClick(View v) {
+//				// Refresh the list
+//				refreshList();
+//			}
+//        	
+//        });
         
         /*List View initiation*/
         final ListView list = (ListView)findViewById(R.id.main_screen_scroll_view);
@@ -98,9 +102,49 @@ public class MainScreen extends ActionBarActivity {
 		    }
 		});
 		
+		// Set swiperefreshlayout variables
+		final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeView.setEnabled(false);
+        swipeView.setColorScheme(android.R.color.holo_green_dark, android.R.color.holo_green_light);
+        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeView.setRefreshing(true);
+                refreshList();
+                ( new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeView.setRefreshing(false);
+     
+                    }
+                }, 2000);
+            }
+        });
+     
+        list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+     
+            }
+     
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                    if (firstVisibleItem == 0)
+                        swipeView.setEnabled(true);
+                    else
+                        swipeView.setEnabled(false);
+            }
+        });       	
+		
 		cursor = ((PostApp)getApplication()).postdata.query();
 		// Add something to make it refresh the list on create
     }
+    
+//    @Override
+//    public void onResume() {
+//    	super.onResume();
+//    	refreshList();
+//    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

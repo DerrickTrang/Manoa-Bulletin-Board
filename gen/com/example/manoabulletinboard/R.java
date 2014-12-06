@@ -2105,7 +2105,6 @@ containing a value of this type.
         public static final int progress_circular=0x7f08002d;
         public static final int progress_horizontal=0x7f08002e;
         public static final int radio=0x7f08003d;
-        public static final int refresh_button=0x7f08006a;
         public static final int relativeLayout1=0x7f080066;
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
@@ -2130,6 +2129,7 @@ containing a value of this type.
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004e;
         public static final int submit_cancel=0x7f080054;
+        public static final int swipe_container=0x7f08006a;
         public static final int tabMode=0x7f080015;
         public static final int terrain=0x7f080003;
         public static final int text_text=0x7f08006d;
@@ -2205,8 +2205,10 @@ containing a value of this type.
     public static final class menu {
         public static final int categories_screen=0x7f0d0000;
         public static final int create_post_screen=0x7f0d0001;
-        public static final int main_screen=0x7f0d0002;
-        public static final int view_post_screen=0x7f0d0003;
+        public static final int fragment_test=0x7f0d0002;
+        public static final int main=0x7f0d0003;
+        public static final int main_screen=0x7f0d0004;
+        public static final int view_post_screen=0x7f0d0005;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
