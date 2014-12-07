@@ -19,7 +19,8 @@ public class PostData {
 	public static final String C_IMEI = "IMEI";
 	public static final String C_Title = "Title";
 	public static final String C_PostDate = "PostDate";
-	public static final String C_EventDate = "EventDate";
+	public static final String C_StartDate = "StartDate";
+	public static final String C_EndDate = "StartDate";
 	public static final String C_StartTime = "StartTime";
 	public static final String C_EndTime = "EndTime";
 	public static final String C_Location_X = "Co_X";
@@ -49,7 +50,8 @@ public class PostData {
 		values.put(C_IMEI,post.getIMEI());
 		values.put(C_Title,post.getName());
 		values.put(C_PostDate, post.getPostDate());
-		values.put(C_EventDate,post.getEventDate());
+		values.put(C_StartDate,post.getStartDate());
+		values.put(C_EndDate,post.getEndDate());
 		values.put(C_StartTime,post.getStartTime());
 		values.put(C_EndTime,post.getEndTime());
 		values.put(C_Location_X,post.getLocationX());
@@ -110,10 +112,10 @@ class DbHelper extends SQLiteOpenHelper{
 		/*Create the database*/
 		/*Create a table with given parameters*/
 		String sql = String.format("create table %s "+ "( %s INTEGER,%s text, %s text, %s text, " +
-									"%s text, %s text, %s text, %s double, %s double, " +
+									"%s text, %s text, %s text, %s text, %s double, %s double, " +
 									"%s text, %s text, %s text, %s int, %s text)", 
 				PostData.Table, PostData.C_ID, PostData.C_IMEI, PostData.C_Title, PostData.C_PostDate,
-				PostData.C_EventDate, PostData.C_StartTime, PostData.C_EndTime, PostData.C_Location_X, PostData.C_Location_Y, 
+				PostData.C_StartDate, PostData.C_EndDate, PostData.C_StartTime, PostData.C_EndTime, PostData.C_Location_X, PostData.C_Location_Y, 
 				PostData.C_Location, PostData.C_Description,PostData.C_Email, PostData.C_Number, PostData.C_Category);
 
 		Log.d(TAG,"onCreate with SQL"+sql);

@@ -5,7 +5,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="C:/Users/Derrick/Documents/Android/ManoaBulletinBoard/libs/mysql-connector-java-5.1.33-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Derrick/Documents/Android/ManoaBulletinBoard/libs/android-support-v4.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/HW/Manoa/EE 396/Manoa-Bulletin-Board/libs/mysql-connector-java-5.1.33-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/HW/Manoa/EE 396/Manoa-Bulletin-Board/libs/android-support-v4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
