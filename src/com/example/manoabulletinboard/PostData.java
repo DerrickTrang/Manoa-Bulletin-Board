@@ -20,7 +20,7 @@ public class PostData {
 	public static final String C_Title = "Title";
 	public static final String C_PostDate = "PostDate";
 	public static final String C_StartDate = "StartDate";
-	public static final String C_EndDate = "StartDate";
+	public static final String C_EndDate = "EndDate";
 	public static final String C_StartTime = "StartTime";
 	public static final String C_EndTime = "EndTime";
 	public static final String C_Location_X = "Co_X";
@@ -113,7 +113,7 @@ class DbHelper extends SQLiteOpenHelper{
 		/*Create a table with given parameters*/
 		String sql = String.format("create table %s "+ "( %s INTEGER,%s text, %s text, %s text, " +
 									"%s text, %s text, %s text, %s text, %s double, %s double, " +
-									"%s text, %s text, %s text, %s int, %s text)", 
+									"%s text, %s text, %s text, %s text, %s text)", 
 				PostData.Table, PostData.C_ID, PostData.C_IMEI, PostData.C_Title, PostData.C_PostDate,
 				PostData.C_StartDate, PostData.C_EndDate, PostData.C_StartTime, PostData.C_EndTime, PostData.C_Location_X, PostData.C_Location_Y, 
 				PostData.C_Location, PostData.C_Description,PostData.C_Email, PostData.C_Number, PostData.C_Category);

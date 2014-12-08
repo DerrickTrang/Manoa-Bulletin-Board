@@ -36,6 +36,9 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	Spinner StartDateMonth;
 	Spinner StartDateDay;
 	Spinner StartDateYear;
+	Spinner EndDateMonth;
+	Spinner EndDateDay;
+	Spinner EndDateYear;
 	Spinner StartHour;
 	Spinner StartMinute;
 	Spinner StartAMPM;
@@ -43,13 +46,14 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	Spinner EndMinute;
 	Spinner EndAMPM;
 	String StartDate;	// Strings for dates to be stored into database
+	String EndDate;
 	String StartTime;	// Strings for start/end time
 	String EndTime;
 	Button Submit;
 	Button Cancel;
 	double Location_x;
 	double Location_y;
-	int Contact_Number;
+	String Contact_Number;
 	private GoogleMap map;
 	ScrollView mainScrollView;
 	
@@ -77,7 +81,10 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		Number = (TextView)findViewById(R.id.create_post_screen_number);
 		StartDateMonth = (Spinner)findViewById(R.id.create_post_screen_start_month);
 		StartDateDay = (Spinner)findViewById(R.id.create_post_screen_start_day);
-		StartDateYear = (Spinner)findViewById(R.id.create_post_screen_start_year);
+		StartDateYear = (Spinner)findViewById(R.id.create_post_screen_end_year);
+		EndDateMonth = (Spinner)findViewById(R.id.create_post_screen_end_month);
+		EndDateDay = (Spinner)findViewById(R.id.create_post_screen_end_day);
+		EndDateYear = (Spinner)findViewById(R.id.create_post_screen_start_year);
 		StartHour = (Spinner)findViewById(R.id.create_post_screen_start_hour);
 		StartMinute = (Spinner)findViewById(R.id.create_post_screen_start_minute);
 		StartAMPM = (Spinner)findViewById(R.id.create_post_screen_start_ampm);
@@ -117,6 +124,9 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 				StartDate = StartDateYear.getSelectedItem().toString() + "-" + 
 						convertMonth(StartDateMonth.getSelectedItem().toString()) + "-" + 
 						StartDateDay.getSelectedItem().toString();
+				EndDate = EndDateYear.getSelectedItem().toString() + "-" + 
+						convertMonth(EndDateMonth.getSelectedItem().toString()) + "-" + 
+						EndDateDay.getSelectedItem().toString();
 				Log.d("ManoaBulletinBoard", "Start date = " + StartDate);
 				int starttimetest = 0;
 				if(!StartHour.getSelectedItem().toString().matches("12"))
@@ -153,7 +163,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
                 	Toast toast = Toast.makeText(getApplicationContext(), "Invalid email", Toast.LENGTH_SHORT);
                 	toast.show();
 				}
-				// Check for valid start date
+				// Check for valid start date (might remove this - do they need to specify a date?)
 				else if(StartDateMonth.getSelectedItem().toString().contains("- Month -") || 
 						StartDateDay.getSelectedItem().toString().contains("- Day -") || 
 						StartDateYear.getSelectedItem().toString().contains("- Year -") ) {
@@ -166,6 +176,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
                 	toast.show();					
 				}
 				else {
+				Contact_Number = Number.getText().toString();
 				StartTime += ":" + StartMinute.getSelectedItem().toString() + ":00"; 
 				EndTime += ":" + EndMinute.getSelectedItem().toString() + ":00"; 
 				Log.d("ManoaBulletinBoard","Title is (" + Title.getText().toString() + ")");
@@ -199,7 +210,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
         });
 		
 		/*Initialize coordinate points and phone number to zero*/
-		Contact_Number = 0;
+		Contact_Number = "";
 		mainScrollView = (ScrollView) findViewById(R.id.scrollView1);
 		ImageView transparentImageView = (ImageView) findViewById(R.id.transparent_image);
 
@@ -249,16 +260,12 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	}
 	
 	public Post storeViewToObject(){
-		if(Number.getText().toString().matches(""))
-			Contact_Number = 0;
-		else
-			Contact_Number = Integer.parseInt(Number.getText().toString());
-		
 		Post UserPost = new Post(
 				Title.getContext(), 			// Context
 				1, 								// ID
 				Title.getText().toString(),		// Title
-				StartDate,					// Event date
+				StartDate,						// Start date
+				EndDate,						// End date
 				StartTime,						// Start time
 				EndTime,						// End time
 				Location_x, Location_y,

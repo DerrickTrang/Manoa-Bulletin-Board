@@ -31,6 +31,27 @@ public class Post {
 		location_x = 0;
 		location_y = 0;
 	}
+	
+	// use this constructor when postdate is available (like when syncing the data from the server)
+	public Post(Context c, int id, String title, String postdate, String startdate, String enddate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, String number, String Category)
+	{	ID = id; 
+		//Unique Android ID
+		IMEI = Secure.getString(c.getContentResolver(),Secure.ANDROID_ID);
+		Title = title;
+		//MYSQL date datatype format: YYYY-MM-DD
+		PostDate = postdate;
+		StartDate = startdate;
+		EndDate = enddate;
+		StartTime = starttime;
+		EndTime = endtime;
+		location_x = locationx;
+		location_y = locationy;
+		Location = location;
+		description = Description;
+		contact_email = email;
+		contact_number = number;
+		category = Category;
+	}
 
 	//generate postdate, imei while inserting the post into database, not here.
 	public Post(Context c, int id, String title, String startdate, String enddate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, String number, String Category)
