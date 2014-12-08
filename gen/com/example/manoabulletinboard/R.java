@@ -2017,13 +2017,16 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f02004a;
         public static final int common_signin_btn_text_pressed_dark=0x7f02004b;
         public static final int common_signin_btn_text_pressed_light=0x7f02004c;
-        public static final int ic_launcher=0x7f02004d;
-        public static final int ic_plusone_medium_off_client=0x7f02004e;
-        public static final int ic_plusone_small_off_client=0x7f02004f;
-        public static final int ic_plusone_standard_off_client=0x7f020050;
-        public static final int ic_plusone_tall_off_client=0x7f020051;
-        public static final int powered_by_google_dark=0x7f020052;
-        public static final int powered_by_google_light=0x7f020053;
+        public static final int ic_action_discard=0x7f02004d;
+        public static final int ic_action_edit=0x7f02004e;
+        public static final int ic_action_new=0x7f02004f;
+        public static final int ic_launcher=0x7f020050;
+        public static final int ic_plusone_medium_off_client=0x7f020051;
+        public static final int ic_plusone_small_off_client=0x7f020052;
+        public static final int ic_plusone_standard_off_client=0x7f020053;
+        public static final int ic_plusone_tall_off_client=0x7f020054;
+        public static final int powered_by_google_dark=0x7f020055;
+        public static final int powered_by_google_light=0x7f020056;
     }
     public static final class id {
         public static final int action_bar=0x7f080042;
@@ -2039,7 +2042,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f08003f;
         public static final int action_mode_bar_stub=0x7f08003e;
         public static final int action_mode_close_button=0x7f080031;
-        public static final int action_settings=0x7f080075;
+        public static final int action_settings=0x7f080078;
         public static final int activity_chooser_view_content=0x7f080032;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
@@ -2047,7 +2050,7 @@ containing a value of this type.
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
-        public static final int categories_button=0x7f080076;
+        public static final int categories_button=0x7f080079;
         public static final int categories_screen_clubs=0x7f080052;
         public static final int categories_screen_food_truck=0x7f080051;
         public static final int categories_screen_show_all=0x7f080050;
@@ -2055,7 +2058,7 @@ containing a value of this type.
         public static final int classic=0x7f080011;
         public static final int collapseActionView=0x7f080020;
         public static final int createScreenMap=0x7f080069;
-        public static final int create_post_button=0x7f080077;
+        public static final int create_post_button=0x7f08007a;
         public static final int create_post_screen_cancel=0x7f080055;
         public static final int create_post_screen_categories=0x7f080058;
         public static final int create_post_screen_description=0x7f080067;
@@ -2077,9 +2080,11 @@ containing a value of this type.
         public static final int create_post_screen_title=0x7f080057;
         public static final int decor_content_parent=0x7f080040;
         public static final int default_activity_button=0x7f080035;
+        public static final int delete_post_button=0x7f08007c;
         public static final int dialog=0x7f080021;
         public static final int disableHome=0x7f08001b;
         public static final int dropdown=0x7f080022;
+        public static final int edit_post_button=0x7f08007b;
         public static final int edit_query=0x7f080044;
         public static final int end=0x7f080025;
         public static final int expand_activities_button=0x7f080033;
@@ -2096,7 +2101,7 @@ containing a value of this type.
         public static final int listMode=0x7f080014;
         public static final int list_item=0x7f080036;
         public static final int main_screen_scroll_view=0x7f08006d;
-        public static final int map=0x7f080072;
+        public static final int map=0x7f080075;
         public static final int match_parent=0x7f08000c;
         public static final int middle=0x7f080024;
         public static final int monochrome=0x7f080013;
@@ -2111,6 +2116,7 @@ containing a value of this type.
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
         public static final int scrollView1=0x7f080056;
+        public static final int scrollView2=0x7f080070;
         public static final int search_badge=0x7f080046;
         public static final int search_bar=0x7f080045;
         public static final int search_button=0x7f080047;
@@ -2140,10 +2146,12 @@ containing a value of this type.
         public static final int transparent_image=0x7f08006a;
         public static final int up=0x7f080027;
         public static final int useLogo=0x7f080016;
-        public static final int view_post_screen_contact_number=0x7f080074;
-        public static final int view_post_screen_description=0x7f080071;
-        public static final int view_post_screen_email=0x7f080073;
-        public static final int view_post_screen_title=0x7f080070;
+        public static final int view_post_screen_contact_number=0x7f080077;
+        public static final int view_post_screen_date=0x7f080072;
+        public static final int view_post_screen_description=0x7f080074;
+        public static final int view_post_screen_email=0x7f080076;
+        public static final int view_post_screen_time=0x7f080073;
+        public static final int view_post_screen_title=0x7f080071;
         public static final int withText=0x7f08001f;
         public static final int wrap_content=0x7f08000d;
     }
@@ -2207,10 +2215,8 @@ containing a value of this type.
     public static final class menu {
         public static final int categories_screen=0x7f0d0000;
         public static final int create_post_screen=0x7f0d0001;
-        public static final int fragment_test=0x7f0d0002;
-        public static final int main=0x7f0d0003;
-        public static final int main_screen=0x7f0d0004;
-        public static final int view_post_screen=0x7f0d0005;
+        public static final int main_screen=0x7f0d0002;
+        public static final int view_post_screen=0x7f0d0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -2272,10 +2278,10 @@ containing a value of this type.
         public static final int accept=0x7f060002;
         public static final int action_settings=0x7f060035;
         public static final int app_name=0x7f060033;
-        public static final int categories_button=0x7f06003a;
-        public static final int categories_screen_clubs=0x7f060049;
-        public static final int categories_screen_food_truck=0x7f060048;
-        public static final int categories_screen_show_all=0x7f060047;
+        public static final int categories_button=0x7f06003c;
+        public static final int categories_screen_clubs=0x7f06004b;
+        public static final int categories_screen_food_truck=0x7f06004a;
+        public static final int categories_screen_show_all=0x7f060049;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f060009;
@@ -2378,18 +2384,19 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int create_post_button=0x7f060039;
-        public static final int create_post_screen_cancel=0x7f060045;
-        public static final int create_post_screen_description=0x7f06003f;
-        public static final int create_post_screen_email=0x7f06003d;
-        public static final int create_post_screen_end_date=0x7f060041;
-        public static final int create_post_screen_end_time=0x7f060043;
-        public static final int create_post_screen_number=0x7f06003e;
-        public static final int create_post_screen_start_date=0x7f060040;
-        public static final int create_post_screen_start_time=0x7f060042;
-        public static final int create_post_screen_submit=0x7f060044;
-        public static final int create_post_screen_title=0x7f06003c;
+        public static final int create_post_screen_cancel=0x7f060047;
+        public static final int create_post_screen_description=0x7f060041;
+        public static final int create_post_screen_email=0x7f06003f;
+        public static final int create_post_screen_end_date=0x7f060043;
+        public static final int create_post_screen_end_time=0x7f060045;
+        public static final int create_post_screen_number=0x7f060040;
+        public static final int create_post_screen_start_date=0x7f060042;
+        public static final int create_post_screen_start_time=0x7f060044;
+        public static final int create_post_screen_submit=0x7f060046;
+        public static final int create_post_screen_title=0x7f06003e;
         public static final int decline=0x7f060003;
-        public static final int hello_world=0x7f06004b;
+        public static final int delete_post_button=0x7f06003b;
+        public static final int edit_post_button=0x7f06003a;
         public static final int refresh_button=0x7f060038;
         public static final int search_button=0x7f060037;
         public static final int search_hint=0x7f060036;
@@ -2397,16 +2404,16 @@ containing a value of this type.
         public static final int store_picture_title=0x7f060000;
         /**  Strings for categories screen 
          */
-        public static final int title_activity_categories_screen=0x7f060046;
+        public static final int title_activity_categories_screen=0x7f060048;
         /**  Strings for create post screen 
          */
-        public static final int title_activity_create_post_screen=0x7f06003b;
-        public static final int title_activity_view_post_screen=0x7f06004a;
-        public static final int view_post_screen_contact_number=0x7f06004e;
-        public static final int view_post_screen_email=0x7f06004d;
+        public static final int title_activity_create_post_screen=0x7f06003d;
         /**  Strings for view post screen 
          */
-        public static final int view_post_screen_title=0x7f06004c;
+        public static final int title_activity_view_post_screen=0x7f06004c;
+        public static final int view_post_screen_contact_number=0x7f06004f;
+        public static final int view_post_screen_email=0x7f06004e;
+        public static final int view_post_screen_title=0x7f06004d;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

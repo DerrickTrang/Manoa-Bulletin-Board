@@ -2,11 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.manoabulletinboard.ViewPostScreen" >
+    <item 
+        android:id="@+id/edit_post_button"
+        android:icon="@drawable/ic_action_edit"
+        android:title="@string/edit_post_button"
+        app:showAsAction="always" />
+    <item 
+        android:id="@+id/delete_post_button"
+        android:icon="@drawable/ic_action_discard"
+        android:title="@string/delete_post_button"
+        app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
-
+<!-- Settings item, probably don't need this -->
+<!--     <item -->
+<!--         android:id="@+id/action_settings" -->
+<!--         android:title="@string/action_settings" -->
+<!--         app:showAsAction="never"/> -->
 </menu>

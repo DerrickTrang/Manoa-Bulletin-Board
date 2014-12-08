@@ -2,6 +2,7 @@ package com.example.manoabulletinboard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DateFormatSymbols;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,7 +34,14 @@ public class CustomAdapter extends ArrayAdapter<Post> {
         TextView text_text = (TextView)convertView.findViewById(R.id.text_text);
 
         text_user.setText(item.getName());
-        text_text.setText(item.getDescription());
+        
+        // Extract the month, day, and year from the post date string
+        String postdate = item.getPostDate();
+        String justthedate = postdate.split("[ ]")[0];
+        String []p = justthedate.split("[-]");
+        int monthnum = Integer.parseInt(p[1]);
+        String displayeddate = (new DateFormatSymbols().getMonths()[monthnum-1]) + " " + p[2];
+        text_text.setText(displayeddate);
 
         return convertView;
     }

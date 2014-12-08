@@ -8,6 +8,8 @@
     <string name="search_button">Search</string>
     <string name="refresh_button">Refresh</string>
     <string name="create_post_button">Create a Post</string>
+    <string name="edit_post_button">Edit</string>
+    <string name="delete_post_button">Delete</string>
     <string name="categories_button">Categories</string>
 
     <!-- Strings for create post screen -->
@@ -131,10 +133,9 @@
     <string name="categories_screen_show_all">Show All</string>
     <string name="categories_screen_food_truck">Food Trucks</string>
     <string name="categories_screen_clubs">Clubs</string>
-    <string name="title_activity_view_post_screen">ViewPostScreen</string>
-    <string name="hello_world">Hello world!</string>
     
     <!-- Strings for view post screen -->
+    <string name="title_activity_view_post_screen">Details</string>
 	<string name="view_post_screen_title">Name</string>
 	<string name="view_post_screen_email">No contact email provided</string>
 	<string name="view_post_screen_contact_number">No phone number provided</string>

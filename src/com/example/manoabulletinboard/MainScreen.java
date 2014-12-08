@@ -90,6 +90,7 @@ public class MainScreen extends ActionBarActivity {
 		    { 	
 		    	Post p = (Post) list.getItemAtPosition(position);
 		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
+		        intent.putExtra("IMEI", p.getIMEI());
 		        intent.putExtra("Title", p.getName());
 		        Log.d("ManoaBulletinBoard","Added title to intent");
 		        intent.putExtra("Email", p.getContactEmail());
@@ -98,6 +99,11 @@ public class MainScreen extends ActionBarActivity {
 		        Log.d("ManoaBulletinBoard","Added description to intent");
 		        intent.putExtra("Location_x", p.getLocationX());
 		        intent.putExtra("Location_y",p.getLocationY());
+		        intent.putExtra("Contact_Number", p.getContactNumber());
+		        intent.putExtra("StartDate", p.getStartDate());
+		        intent.putExtra("EndDate", p.getEndDate());
+		        intent.putExtra("StartTime", p.getStartTime());
+		        intent.putExtra("EndTime", p.getEndTime());
 		        startActivity(intent);
 		    	
 		    }
@@ -118,7 +124,7 @@ public class MainScreen extends ActionBarActivity {
                         swipeView.setRefreshing(false);
      
                     }
-                }, 2000);
+                }, 0);
             }
         });
      

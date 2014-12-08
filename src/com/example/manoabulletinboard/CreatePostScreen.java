@@ -154,7 +154,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
                 	toast.show();
 				}
 				// Check for valid phone number
-				else if(length != 0 && length != 7 && length != 10) {
+				else if(length != 0 && length != 7 && length != 10 && length != 12 && length != 13 && length != 14) {
                 	Toast toast = Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT);
                 	toast.show();
                 }

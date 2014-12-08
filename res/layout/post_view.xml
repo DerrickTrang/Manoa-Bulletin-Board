@@ -11,6 +11,9 @@
 			android:text="Free Food" 
 			android:layout_alignParentTop="true" 
 			android:layout_alignParentLeft="true" 
+			android:scrollHorizontally="true"
+			android:ellipsize="end" 
+			android:maxLines="1"
 			android:id="@+id/text_user"/>
 
 		<TextView 
@@ -21,6 +24,7 @@
 			android:layout_alignParentLeft="true" 
 			android:id="@+id/text_text" 
 			android:layout_below="@+id/text_user" 
+			android:textSize="13sp"
 			android:autoLink="all"/>
 
 <!-- 		<TextView  -->
