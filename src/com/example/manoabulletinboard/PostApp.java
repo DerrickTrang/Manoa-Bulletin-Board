@@ -29,6 +29,10 @@ public class PostApp extends Application implements ServerProgreeDialog{
 		new Server(this).execute("SYNC");
 	}
 	
+	public Context getContext()
+	{
+		return context;
+	}
 	
 	/*TODOs*/
 	/*Fetch data from server method*/
@@ -51,10 +55,8 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				if(ServerData.isFirst())
 				postdata.FlushAll();
 				
-				Log.i("d","h5");
 				int ID = ServerData.getInt(PostData.C_ID);
 				String IMEI = ServerData.getString(PostData.C_IMEI);
-				Log.d("ManoaBulletinBoard","IMEI in syncevent/postapp = " + IMEI);
 				String Title = ServerData.getString(PostData.C_Title);
 				String PostDate = ServerData.getString(PostData.C_PostDate);
 				String StartDate = ServerData.getString(PostData.C_StartDate);
@@ -68,6 +70,8 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				String Email = ServerData.getString(PostData.C_Email);
 				String Number = ServerData.getString(PostData.C_Number);
 				String Category = ServerData.getString(PostData.C_Category);
+				
+				Log.i("Server ID:", String.valueOf(ID));
 
 				Newpost = new Post(context,ID,IMEI,Title,PostDate,StartDate,EndDate,StartTime,EndTime,LocationX,LocationY,Location,Description,Email,Number,Category);
 
@@ -81,10 +85,16 @@ public class PostApp extends Application implements ServerProgreeDialog{
 		}
 		return true;
 	}
+
+	public boolean DeleteEvent(int id, String IMEI)
+	{
+		new Server(this).execute("DELETESYNC", id, IMEI);
+		return false;
+	}
 	
 	public boolean DeleteEvent(Post post)
 	{
-		new Server(this).execute("DELETE", post.getID(), post.getIMEI());
+		new Server(this).execute("DELETESYNC", post.getID(), post.getIMEI());
 		return false;
 	}
 

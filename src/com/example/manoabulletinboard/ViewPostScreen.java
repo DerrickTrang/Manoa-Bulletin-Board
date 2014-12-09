@@ -7,6 +7,7 @@ import java.util.Date;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.support.v7.app.ActionBarActivity;
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ViewPostScreen extends ActionBarActivity {
 
+	private Intent intent;
 	private GoogleMap map;
 	
 	@Override
@@ -33,14 +35,14 @@ public class ViewPostScreen extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// Initialize strings and views
-		String ViewPostTitle = getIntent().getExtras().getString("Title");
-		String ViewPostEmail = getIntent().getExtras().getString("Email");
-		String ViewPostDescription = getIntent().getExtras().getString("Description");
-		String ViewPostContactNumber = getIntent().getExtras().getString("Contact_Number");
-		String ViewPostStartDate = getIntent().getExtras().getString("StartDate");
-		String ViewPostEndDate = getIntent().getExtras().getString("EndDate");
-		String ViewPostStartTime = getIntent().getExtras().getString("StartTime");
-		String ViewPostEndTime = getIntent().getExtras().getString("EndTime");		
+		String ViewPostTitle = getIntent().getExtras().getString(PostData.C_Title);
+		String ViewPostEmail = getIntent().getExtras().getString(PostData.C_Email);
+		String ViewPostDescription = getIntent().getExtras().getString(PostData.C_Description);
+		String ViewPostContactNumber = getIntent().getExtras().getString(PostData.C_Number);
+		String ViewPostStartDate = getIntent().getExtras().getString(PostData.C_StartDate);
+		String ViewPostEndDate = getIntent().getExtras().getString(PostData.C_EndDate);
+		String ViewPostStartTime = getIntent().getExtras().getString(PostData.C_StartTime);
+		String ViewPostEndTime = getIntent().getExtras().getString(PostData.C_EndTime);		
 		TextView view_post_screen_title = (TextView) findViewById(R.id.view_post_screen_title);
 		TextView view_post_screen_email = (TextView) findViewById(R.id.view_post_screen_email);
 		TextView view_post_screen_description = (TextView) findViewById(R.id.view_post_screen_description);
@@ -93,12 +95,16 @@ public class ViewPostScreen extends ActionBarActivity {
 			map.moveCamera(CameraUpdateFactory.zoomTo(16));
 			map.addMarker(new MarkerOptions().position(post_position));
 		}
+		
+		//save intent for editing and deleting.
+		intent = getIntent();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_post_screen, menu);
+		Log.i("ManoaBulletinBoard","post IMEI = " + getIntent().getExtras().getString(PostData.C_ID));
 		Log.d("ManoaBulletinBoard","post IMEI = " + getIntent().getExtras().getString("IMEI"));
 		Log.d("ManoaBulletinBoard","your IMEI = " + Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID));		
 		if(!getIntent().getExtras().getString("IMEI").matches(Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID))) {
@@ -133,6 +139,9 @@ public class ViewPostScreen extends ActionBarActivity {
 					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
 							// if this button is clicked, delete the post from the database, return to the previous screen
+							Log.i("Deleting post: ID: ",String.valueOf(intent.getExtras().getInt(PostData.C_ID)));
+							Log.i("Deleting post: IMEI: ",intent.getExtras().getString(PostData.C_IMEI));
+							((PostApp)getApplication()).DeleteEvent(intent.getExtras().getInt("ID"),intent.getExtras().getString("IMEI"));
 							finish();
 						}
 					  })
@@ -151,6 +160,13 @@ public class ViewPostScreen extends ActionBarActivity {
 			// This should go to create post activity with intent with all the info, delete old post and push new one up to server
         	Toast toast2 = Toast.makeText(getApplicationContext(), "Edit button pressed", Toast.LENGTH_SHORT);
         	toast2.show();
+
+        	intent.setClass(this, CreatePostScreen.class);
+        	//startActivityForResult(intent, 1); 	// Use startactivityforresult if we need to send something back here 
+        										// "1" is the requestCode that will tell us where "OnActivityResult" will go
+        							// otherwise, use startActivity
+        	startActivity(intent);
+        	finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}

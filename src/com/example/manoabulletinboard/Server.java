@@ -14,8 +14,8 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 
 	private static final String IP = "128.171.61.142";		//School: 128.171.61.142
 	private static final int MySQL_Port = 3808;				
-	private static final String Username = "attkk2014";	//subject to change after testing
-	private static final String Password = "Attkkee396";	//subject to change with the account
+	private static final String Username = "UHMStudents";	
+	private static final String Password = "attKK1776";	
 	
 	private static final String DATABASE_NAME = "Manoa_Bulletin_Board";
 	private static final String DATABASE_TABLE = "EventTable";
@@ -43,7 +43,6 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 		// TODO Auto-generated method stub
 		super.onPreExecute();
 		myDialog.onPreExecute();
-		Log.i("Server","C2");
 	}
 	
 	//After info have been updated, dialog close
@@ -60,11 +59,8 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 	@Override
 	protected ResultSet doInBackground(Object... params) {
 		// TODO Auto-generated method stub
-		Log.i("Server","C-1");
 		ResultSet DataFromServer = null;
-		Log.i("Server","C0");
 		conn = EstablishConnection();
-		Log.i("Server","C1");
 		if(conn == null)
 		{
 			Log.e("Server","Connection is null");
@@ -93,10 +89,11 @@ public class Server extends AsyncTask<Object, Integer, ResultSet>{
 				DataFromServer = SyncEvent();
 				break;
 				
-			case "DELETE":
+			case "DELETESYNC":
 				Log.i("Server","Deleting Event");
 				DeleteEvent((int)params[1],(String)params[2]);
 				Log.i("Server","Done Deleting Event");
+				DataFromServer = SyncEvent();
 				break;
 				
 			case "ADDSYNC":

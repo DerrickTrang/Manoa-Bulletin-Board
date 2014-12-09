@@ -90,21 +90,24 @@ public class MainScreen extends ActionBarActivity {
 		    { 	
 		    	Post p = (Post) list.getItemAtPosition(position);
 		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
-		        intent.putExtra("IMEI", p.getIMEI());
+		        Log.i("Main/listAdapater ID:", String.valueOf(p.getID()));
+		        intent.putExtra(PostData.C_ID, p.getID());
+		        intent.putExtra(PostData.C_IMEI, p.getIMEI());
 				Log.d("ManoaBulletinBoard","IMEI in syncevent = " + p.getIMEI());
-		        intent.putExtra("Title", p.getName());
+		        intent.putExtra(PostData.C_Title, p.getName());
 		        Log.d("ManoaBulletinBoard","Added title to intent");
-		        intent.putExtra("Email", p.getContactEmail());
+		        intent.putExtra(PostData.C_Email, p.getContactEmail());
 		        Log.d("ManoaBulletinBoard","Added email to intent");
-		        intent.putExtra("Description", p.getDescription());
+		        intent.putExtra(PostData.C_Description, p.getDescription());
 		        Log.d("ManoaBulletinBoard","Added description to intent");
-		        intent.putExtra("Location_x", p.getLocationX());
-		        intent.putExtra("Location_y",p.getLocationY());
-		        intent.putExtra("Contact_Number", p.getContactNumber());
-		        intent.putExtra("StartDate", p.getStartDate());
-		        intent.putExtra("EndDate", p.getEndDate());
-		        intent.putExtra("StartTime", p.getStartTime());
-		        intent.putExtra("EndTime", p.getEndTime());
+		        intent.putExtra(PostData.C_Location_X, p.getLocationX());
+		        intent.putExtra(PostData.C_Location_Y,p.getLocationY());
+		        intent.putExtra(PostData.C_Number, p.getContactNumber());
+		        intent.putExtra(PostData.C_StartDate, p.getStartDate());
+		        intent.putExtra(PostData.C_EndDate, p.getEndDate());
+		        intent.putExtra(PostData.C_StartTime, p.getStartTime());
+		        intent.putExtra(PostData.C_EndTime, p.getEndTime());
+		        intent.putExtra(PostData.C_Category, p.getCategory());
 		        startActivity(intent);
 		    	
 		    }
@@ -234,7 +237,6 @@ public class MainScreen extends ActionBarActivity {
 		}
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			Log.i("Database",cursor.getString(cursor.getColumnIndex(PostData.C_ID)));
 			Post temppost = new Post(SearchButton.getContext(),
 									 cursor.getInt(cursor.getColumnIndex(PostData.C_ID)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_IMEI)),

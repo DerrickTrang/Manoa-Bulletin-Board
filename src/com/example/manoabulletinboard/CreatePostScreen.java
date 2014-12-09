@@ -1,5 +1,7 @@
 package com.example.manoabulletinboard;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -56,6 +58,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	String Contact_Number;
 	private GoogleMap map;
 	ScrollView mainScrollView;
+	Post UserPost;
 	
 	/*Instantiate dbHelper and a database*/
 	DbHelper dbHelper;
@@ -122,10 +125,10 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 				// Stuff for checking fields
 				int length = Number.getText().toString().length();
 				StartDate = StartDateYear.getSelectedItem().toString() + "-" + 
-						convertMonth(StartDateMonth.getSelectedItem().toString()) + "-" + 
+						convertMonthToInt(StartDateMonth.getSelectedItem().toString()) + "-" + 
 						StartDateDay.getSelectedItem().toString();
 				EndDate = EndDateYear.getSelectedItem().toString() + "-" + 
-						convertMonth(EndDateMonth.getSelectedItem().toString()) + "-" + 
+						convertMonthToInt(EndDateMonth.getSelectedItem().toString()) + "-" + 
 						EndDateDay.getSelectedItem().toString();
 				Log.d("ManoaBulletinBoard", "Start date = " + StartDate);
 				int starttimetest = 0;
@@ -180,11 +183,29 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 				StartTime += ":" + StartMinute.getSelectedItem().toString() + ":00"; 
 				EndTime += ":" + EndMinute.getSelectedItem().toString() + ":00"; 
 				Log.d("ManoaBulletinBoard","Title is (" + Title.getText().toString() + ")");
-				Post UserPost = storeViewToObject();
-				
+				UserPost = storeViewToObject();
+
+				//if there is an Intent sent to here, delete the old one first
+				if(getIntent().getExtras() != null)
+				{
+					((PostApp)getApplication()).DeleteEvent(UserPost);
+					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(((PostApp)getApplication()).getContext());                      
+				    dlgAlert.setTitle("Edited Post"); 
+				    dlgAlert.setMessage("Your Post has been edited"); 
+				    dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+				        public void onClick(DialogInterface dialog, int whichButton) {
+							/*insert into the database*/
+							((PostApp)getApplication()).postdata.insert(UserPost);
+							((PostApp)getApplication()).AddEvent(UserPost);
+				        }
+				   });
+				    dlgAlert.setCancelable(true);
+				    dlgAlert.create().show();
+				}else{
 				/*insert into the database*/
 				((PostApp)getApplication()).postdata.insert(UserPost);
 				((PostApp)getApplication()).AddEvent(UserPost);
+				}
 				
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("result", "created");
@@ -240,6 +261,12 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		        }   
 		    }
 		});
+		
+		//if there is an Intent sent to here, meanning that we are editting the old post.
+		if(getIntent().getExtras() != null)
+		{
+			EditPost();
+		}
 	}
 	
 	@Override
@@ -260,9 +287,15 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	}
 	
 	public Post storeViewToObject(){
+		int id = 1;
+		if(getIntent().getExtras() != null)
+		{
+			id = getIntent().getExtras().getInt(PostData.C_ID);
+		}
+		
 		Post UserPost = new Post(
 				Title.getContext(), 			// Context
-				1, 								// ID
+				id, 								// ID
 				Title.getText().toString(),		// Title
 				StartDate,						// Start date
 				EndDate,						// End date
@@ -286,7 +319,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	
 	}
 	
-	public String convertMonth(String month) {
+	public String convertMonthToInt(String month) {
 		String monthint = "";
 		switch(month) {
 		case "January": monthint = "1";
@@ -317,6 +350,37 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		return monthint;
 	}
 	
+	public String convertMonthToString(String month) {
+		String monthint = "";
+		switch(month) {
+		case "01": monthint = "January";
+						break;
+		case "02": monthint = "February";
+						break;
+		case "03": 	monthint = "March";
+						break;
+		case "04": monthint = "April";
+						break;
+		case "05": monthint = "May";
+						break;
+		case "06": monthint = "June";
+						break;
+		case "07": 	monthint = "July";
+						break;
+		case "08": monthint = "August";
+						break;
+		case "09": monthint = "September";
+						break;
+		case "10": monthint = "October";
+						break;
+		case "11": monthint = "November";
+						break;
+		case "12": monthint = "December";
+						break;
+		}
+		return monthint;
+	}
+	
 	@Override
 	public void onCameraChange(CameraPosition C) {
 		if(C.zoom < 16) {
@@ -337,5 +401,79 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		if(C.target.longitude < -157.82444) {
 			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(C.target.latitude,-157.82444)));
 		}
+	}
+	
+	private void EditPost()
+	{
+		Title.setText(getIntent().getExtras().getString(PostData.C_Title));
+		Description.setText(getIntent().getExtras().getString(PostData.C_Description));
+		Email.setText(getIntent().getExtras().getString(PostData.C_Email));
+		Number.setText(getIntent().getExtras().getString(PostData.C_Number));
+		Category.setSelection(this.getIndexFromSpinner(Category, getIntent().getExtras().getString(PostData.C_Category)));
+		Location_x = getIntent().getExtras().getDouble(PostData.C_Location_X);
+		Location_y = getIntent().getExtras().getDouble(PostData.C_Location_Y);
+		setSpinnerSet(StartDateYear,this.getPartialInfo(0, getIntent().getExtras().getString(PostData.C_StartDate)),
+					  StartDateMonth,this.getPartialInfo(1, getIntent().getExtras().getString(PostData.C_StartDate)),
+					  StartDateDay,this.getPartialInfo(2, getIntent().getExtras().getString(PostData.C_StartDate)));
+		setSpinnerSet(EndDateYear,this.getPartialInfo(0, getIntent().getExtras().getString(PostData.C_EndDate)),
+				  	  EndDateMonth,this.getPartialInfo(1, getIntent().getExtras().getString(PostData.C_EndDate)),
+				  	  EndDateDay,this.getPartialInfo(2, getIntent().getExtras().getString(PostData.C_EndDate)));
+		setSpinnerSet(StartHour,this.getPartialInfo(0, getIntent().getExtras().getString(PostData.C_StartTime)),
+					  StartMinute,this.getPartialInfo(1, getIntent().getExtras().getString(PostData.C_StartTime)),
+					  StartAMPM,this.getPartialInfo(2, getIntent().getExtras().getString(PostData.C_StartTime)));
+		setSpinnerSet(EndHour,this.getPartialInfo(0, getIntent().getExtras().getString(PostData.C_EndTime)),
+					  EndMinute,this.getPartialInfo(1, getIntent().getExtras().getString(PostData.C_EndTime)),
+					  EndAMPM,this.getPartialInfo(2, getIntent().getExtras().getString(PostData.C_EndTime)));
+	}
+	
+	private String getPartialInfo(int part, String info)
+	{
+		String[] interested = null;
+		//if the info is a date.
+		if(info.contains("-"))
+		{
+			interested = info.split("-");
+			//if it month, change back to text
+			if(part == 1)
+			{
+				interested[part] = convertMonthToString(interested[part]);
+			}
+			return interested[part];
+		}else if(info.contains(":"))	// or the info is a time.
+		{
+			interested = info.split(":");
+			if(part == 0)
+			{
+				if(Integer.parseInt(interested[0]) >= 13)
+				interested[part] = String.valueOf(Integer.parseInt(interested[0]) - 12);
+			} else if(part == 2)
+			{
+				if(Integer.parseInt(interested[0]) >= 13)
+				interested[part] = "P.M.";
+				else
+				interested[part] = "A.M.";
+			}
+			return interested[part];
+		} else{
+			return info;
+		}
+	}
+	
+	private void setSpinnerSet(Spinner s1, String i1, Spinner s2, String i2, Spinner s3, String i3)
+	{
+		s1.setSelection(this.getIndexFromSpinner(s1, i1));
+		s2.setSelection(this.getIndexFromSpinner(s2, i2));
+		s3.setSelection(this.getIndexFromSpinner(s3, i3));
+	}
+	
+	private int getIndexFromSpinner(Spinner spinner, String myString)
+	{
+		int index = 0;
+		for (int i=0;i<spinner.getCount();i++)
+		{
+			if (spinner.getItemAtPosition(i).equals(myString))
+		    index = i;
+		}
+		return index;
 	}
 }
