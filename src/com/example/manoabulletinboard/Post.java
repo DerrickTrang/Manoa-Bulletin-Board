@@ -33,10 +33,10 @@ public class Post {
 	}
 	
 	// use this constructor when postdate is available (like when syncing the data from the server)
-	public Post(Context c, int id, String title, String postdate, String startdate, String enddate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, String number, String Category)
+	public Post(Context c, int id, String imei, String title, String postdate, String startdate, String enddate, String starttime, String endtime, double locationx, double locationy, String location, String Description, String email, String number, String Category)
 	{	ID = id; 
 		//Unique Android ID
-		IMEI = Secure.getString(c.getContentResolver(),Secure.ANDROID_ID);
+		IMEI = imei;
 		Title = title;
 		//MYSQL date datatype format: YYYY-MM-DD
 		PostDate = postdate;

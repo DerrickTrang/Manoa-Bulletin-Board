@@ -53,6 +53,8 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				
 				Log.i("d","h5");
 				int ID = ServerData.getInt(PostData.C_ID);
+				String IMEI = ServerData.getString(PostData.C_IMEI);
+				Log.d("ManoaBulletinBoard","IMEI in syncevent/postapp = " + IMEI);
 				String Title = ServerData.getString(PostData.C_Title);
 				String PostDate = ServerData.getString(PostData.C_PostDate);
 				String StartDate = ServerData.getString(PostData.C_StartDate);
@@ -67,7 +69,7 @@ public class PostApp extends Application implements ServerProgreeDialog{
 				String Number = ServerData.getString(PostData.C_Number);
 				String Category = ServerData.getString(PostData.C_Category);
 
-				Newpost = new Post(context,ID,Title,PostDate,StartDate,EndDate,StartTime,EndTime,LocationX,LocationY,Location,Description,Email,Number,Category);
+				Newpost = new Post(context,ID,IMEI,Title,PostDate,StartDate,EndDate,StartTime,EndTime,LocationX,LocationY,Location,Description,Email,Number,Category);
 
 				postdata.insert(Newpost);
 			}

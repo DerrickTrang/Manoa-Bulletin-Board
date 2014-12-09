@@ -6,6 +6,7 @@ import java.text.DateFormatSymbols;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,10 @@ public class CustomAdapter extends ArrayAdapter<Post> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get data for item
         Post item = getItem(position);
+		Log.d("ManoaBulletinBoard","IMEI in adapter = " + item.getIMEI());
+		Log.d("ManoaBulletinBoard","NAME in adapter = " + item.getName());
+
+
        
         if(convertView == null)
         {

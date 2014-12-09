@@ -91,6 +91,7 @@ public class MainScreen extends ActionBarActivity {
 		    	Post p = (Post) list.getItemAtPosition(position);
 		        Intent intent = new Intent(MainScreen.this, ViewPostScreen.class);
 		        intent.putExtra("IMEI", p.getIMEI());
+				Log.d("ManoaBulletinBoard","IMEI in syncevent = " + p.getIMEI());
 		        intent.putExtra("Title", p.getName());
 		        Log.d("ManoaBulletinBoard","Added title to intent");
 		        intent.putExtra("Email", p.getContactEmail());
@@ -236,7 +237,9 @@ public class MainScreen extends ActionBarActivity {
 			Log.i("Database",cursor.getString(cursor.getColumnIndex(PostData.C_ID)));
 			Post temppost = new Post(SearchButton.getContext(),
 									 cursor.getInt(cursor.getColumnIndex(PostData.C_ID)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_IMEI)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_Title)),
+									 cursor.getString(cursor.getColumnIndex(PostData.C_PostDate)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_StartDate)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_EndDate)),
 									 cursor.getString(cursor.getColumnIndex(PostData.C_StartTime)),

@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.support.v7.app.ActionBarActivity;
@@ -97,6 +99,8 @@ public class ViewPostScreen extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_post_screen, menu);
+		Log.d("ManoaBulletinBoard","post IMEI = " + getIntent().getExtras().getString("IMEI"));
+		Log.d("ManoaBulletinBoard","your IMEI = " + Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID));		
 		if(!getIntent().getExtras().getString("IMEI").matches(Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID))) {
 			menu.getItem(0).setVisible(false);
 			menu.getItem(1).setVisible(false);
@@ -109,15 +113,41 @@ public class ViewPostScreen extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		switch(item.getItemId()) {
-		case android.R.id.home: 
+		if(item.getItemId() == android.R.id.home) {
 			finish();
 			return true;
-		case R.id.delete_post_button:
+		}
+		else if(item.getItemId() == R.id.delete_post_button) {
 			// This should open a dialogue asking for confirmation, delete post, and go back to previous activity
         	Toast toast = Toast.makeText(getApplicationContext(), "Delete button pressed", Toast.LENGTH_SHORT);
         	toast.show();
-		case R.id.edit_post_button:
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+	 
+				// set title
+				alertDialogBuilder.setTitle("Delete post");
+	 
+				// set dialog message
+				alertDialogBuilder
+					.setMessage("Are you sure you want to delete your post?")
+					.setCancelable(false)
+					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, delete the post from the database, return to the previous screen
+							finish();
+						}
+					  })
+					.setNegativeButton("No",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, just close the dialog box and do nothing
+							dialog.cancel();
+						}
+					});
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
+					// show it
+					alertDialog.show();
+		}
+		else if(item.getItemId() == R.id.edit_post_button) {
 			// This should go to create post activity with intent with all the info, delete old post and push new one up to server
         	Toast toast2 = Toast.makeText(getApplicationContext(), "Edit button pressed", Toast.LENGTH_SHORT);
         	toast2.show();

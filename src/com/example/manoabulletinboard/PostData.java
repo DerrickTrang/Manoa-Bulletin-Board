@@ -48,6 +48,7 @@ public class PostData {
 		ContentValues values = new ContentValues();
 		values.put(C_ID,post.getID());
 		values.put(C_IMEI,post.getIMEI());
+		Log.d("ManoaBulletinBoard","IMEI in syncevent/postdata = " + post.getIMEI());
 		values.put(C_Title,post.getName());
 		values.put(C_PostDate, post.getPostDate());
 		values.put(C_StartDate,post.getStartDate());
