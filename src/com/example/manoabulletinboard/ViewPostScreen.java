@@ -42,7 +42,11 @@ public class ViewPostScreen extends ActionBarActivity {
 		String ViewPostStartDate = getIntent().getExtras().getString(PostData.C_StartDate);
 		String ViewPostEndDate = getIntent().getExtras().getString(PostData.C_EndDate);
 		String ViewPostStartTime = getIntent().getExtras().getString(PostData.C_StartTime);
-		String ViewPostEndTime = getIntent().getExtras().getString(PostData.C_EndTime);		
+		String ViewPostEndTime = getIntent().getExtras().getString(PostData.C_EndTime);
+		double locationx = getIntent().getExtras().getDouble(PostData.C_Location_X);
+		double locationy = getIntent().getExtras().getDouble(PostData.C_Location_Y);
+		Log.d("ManoaBulletinBoard","X = " + locationx);
+		Log.d("ManoaBulletinBoard","Y = " + locationy);
 		TextView view_post_screen_title = (TextView) findViewById(R.id.view_post_screen_title);
 		TextView view_post_screen_email = (TextView) findViewById(R.id.view_post_screen_email);
 		TextView view_post_screen_description = (TextView) findViewById(R.id.view_post_screen_description);
@@ -84,9 +88,6 @@ public class ViewPostScreen extends ActionBarActivity {
 		
 		// Set up map
 		MapFragment tempFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-		double locationx = getIntent().getExtras().getDouble("Location_x");
-		double locationy = getIntent().getExtras().getDouble("Location_y");
-		
 		map = tempFrag.getMap();
 		
 		if(map != null) {
@@ -125,8 +126,6 @@ public class ViewPostScreen extends ActionBarActivity {
 		}
 		else if(item.getItemId() == R.id.delete_post_button) {
 			// This should open a dialogue asking for confirmation, delete post, and go back to previous activity
-        	Toast toast = Toast.makeText(getApplicationContext(), "Delete button pressed", Toast.LENGTH_SHORT);
-        	toast.show();
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 	 
 				// set title
@@ -158,13 +157,8 @@ public class ViewPostScreen extends ActionBarActivity {
 		}
 		else if(item.getItemId() == R.id.edit_post_button) {
 			// This should go to create post activity with intent with all the info, delete old post and push new one up to server
-        	Toast toast2 = Toast.makeText(getApplicationContext(), "Edit button pressed", Toast.LENGTH_SHORT);
-        	toast2.show();
-
         	intent.setClass(this, CreatePostScreen.class);
-        	//startActivityForResult(intent, 1); 	// Use startactivityforresult if we need to send something back here 
-        										// "1" is the requestCode that will tell us where "OnActivityResult" will go
-        							// otherwise, use startActivity
+        	intent.putExtra("isEdit", true);
         	startActivity(intent);
         	finish();
 		}

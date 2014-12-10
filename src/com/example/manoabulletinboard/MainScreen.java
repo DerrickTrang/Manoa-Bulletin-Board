@@ -102,6 +102,8 @@ public class MainScreen extends ActionBarActivity {
 		        Log.d("ManoaBulletinBoard","Added description to intent");
 		        intent.putExtra(PostData.C_Location_X, p.getLocationX());
 		        intent.putExtra(PostData.C_Location_Y,p.getLocationY());
+				Log.d("ManoaBulletinBoard","passed X = " + p.getLocationX());
+				Log.d("ManoaBulletinBoard","passed Y = " + p.getLocationY());
 		        intent.putExtra(PostData.C_Number, p.getContactNumber());
 		        intent.putExtra(PostData.C_StartDate, p.getStartDate());
 		        intent.putExtra(PostData.C_EndDate, p.getEndDate());
@@ -149,6 +151,8 @@ public class MainScreen extends ActionBarActivity {
 		
 		cursor = ((PostApp)getApplication()).postdata.query();
 		// Add something to make it refresh the list on create
+//		android.os.SystemClock.sleep(2000);
+//		refreshList();
     }
     
 //    @Override
@@ -200,7 +204,7 @@ public class MainScreen extends ActionBarActivity {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
             	if(data.getStringExtra("result").equals("created") == true) {
-            		// refreshList(); broken atm, add something that refreshes whole list after creating event
+            		// refreshList(); broken atm, add something that refreshes whole list after creating event'
             		Toast toast = Toast.makeText(getApplicationContext(), "Event created", Toast.LENGTH_SHORT);
                 	toast.show();
                 }

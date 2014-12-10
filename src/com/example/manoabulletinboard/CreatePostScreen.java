@@ -185,10 +185,9 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 				Log.d("ManoaBulletinBoard","Title is (" + Title.getText().toString() + ")");
 				UserPost = storeViewToObject();
 
-				//if there is an Intent sent to here, delete the old one first
+				//if we are editing old post, delete the old one first
 				if(getIntent().getExtras() != null)
-				{
-					((PostApp)getApplication()).DeleteEvent(UserPost);
+				{	((PostApp)getApplication()).DeleteEvent(UserPost);
 					AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(((PostApp)getApplication()).getContext());                      
 				    dlgAlert.setTitle("Edited Post"); 
 				    dlgAlert.setMessage("Your Post has been edited"); 
@@ -200,8 +199,10 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 				        }
 				   });
 				    dlgAlert.setCancelable(true);
+				    android.os.SystemClock.sleep(1000);
 				    dlgAlert.create().show();
-				}else{
+				}
+				else{
 				/*insert into the database*/
 				((PostApp)getApplication()).postdata.insert(UserPost);
 				((PostApp)getApplication()).AddEvent(UserPost);
@@ -424,6 +425,13 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		setSpinnerSet(EndHour,this.getPartialInfo(0, getIntent().getExtras().getString(PostData.C_EndTime)),
 					  EndMinute,this.getPartialInfo(1, getIntent().getExtras().getString(PostData.C_EndTime)),
 					  EndAMPM,this.getPartialInfo(2, getIntent().getExtras().getString(PostData.C_EndTime)));
+		// Add icon to map for post's current position
+		if(map != null) {
+			LatLng post_position = new LatLng(Location_y, Location_x);
+			map.moveCamera(CameraUpdateFactory.newLatLng(post_position));
+			postLocation = map.addMarker(new MarkerOptions().position(post_position).title("Post here!"));
+			markerPresent = true;			
+		}
 	}
 	
 	private String getPartialInfo(int part, String info)
