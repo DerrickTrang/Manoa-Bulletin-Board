@@ -4,13 +4,21 @@
 	android:layout_width="match_parent" 
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
+		<ImageView
+		    android:layout_width="36dp"
+		    android:layout_height="36dp"
+		    android:layout_alignParentTop="true"
+		    android:layout_alignParentLeft="true"
+		    android:paddingRight="10dp"
+		    android:paddingTop="10dp"
+		    android:id="@+id/image" />
 		<TextView 
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content" 
 			android:textAppearance="?android:attr/textAppearanceLarge" 
 			android:text="Free Food" 
 			android:layout_alignParentTop="true" 
-			android:layout_alignParentLeft="true" 
+			android:layout_toRightOf="@+id/image"
 			android:scrollHorizontally="true"
 			android:ellipsize="end" 
 			android:maxLines="1"
@@ -21,19 +29,11 @@
 			android:layout_width="wrap_content" 
 			android:textAppearance="?android:attr/textAppearanceMedium" 
 			android:text="!!!Free Food at Dr. Sasaki's office!!!" 
-			android:layout_alignParentLeft="true" 
+			android:layout_toRightOf="@+id/image"
 			android:id="@+id/text_text" 
 			android:layout_below="@+id/text_user" 
 			android:textSize="13sp"
 			android:autoLink="all"/>
 
-<!-- 		<TextView  -->
-<!-- 			android:layout_height="wrap_content"  -->
-<!-- 			android:layout_width="wrap_content"  -->
-<!-- 			android:textAppearance="?android:attr/textAppearanceSmall"  -->
-<!-- 			android:text="10/13/14"  -->
-<!-- 			android:id="@+id/text_time"  -->
-<!-- 			android:layout_alignParentRight="true"  -->
-<!-- 			android:layout_alignBottom="@+id/text_user"/> -->
 
 </RelativeLayout>

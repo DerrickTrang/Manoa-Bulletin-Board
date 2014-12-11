@@ -122,7 +122,10 @@
     <string-array name="create_post_screen_categories">
         <item>- Category -</item>
         <item>Food Truck</item>
+        <item>For Sale</item>
+        <item>Event</item>
         <item>Club</item>
+        <item>Other</item>
     </string-array>
 
     <string name="create_post_screen_submit">Submit</string>

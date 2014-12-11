@@ -3,18 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.manoabulletinboard.MainScreen" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/categories_button"
-        android:title="@string/categories_button"
-        android:showAsAction="always" />
+<!-- OLD MENU, maybe we dont need settings/categories, it can go into navigation drawer -->
+<!--     <item -->
+<!--         android:id="@+id/action_settings" -->
+<!--         android:orderInCategory="100" -->
+<!--         android:title="@string/action_settings" -->
+<!--         app:showAsAction="never"/> -->
+<!--     <item -->
+<!--         android:id="@+id/categories_button" -->
+<!--         android:title="@string/categories_button" -->
+<!--         android:showAsAction="always" /> -->
+<!--     <item  -->
+<!--         android:id="@+id/create_post_button" -->
+<!--         android:title="@string/create_post_button" -->
+<!--         android:showAsAction="always" /> -->
     <item 
         android:id="@+id/create_post_button"
+        android:icon="@drawable/ic_action_new"
         android:title="@string/create_post_button"
-        android:showAsAction="always" />
-
+        app:showAsAction="always" />
+    
 </menu>

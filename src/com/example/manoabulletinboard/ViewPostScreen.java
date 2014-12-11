@@ -33,6 +33,7 @@ public class ViewPostScreen extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_post_screen);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.ManoaGreen));
 
 		// Initialize strings and views
 		String ViewPostTitle = getIntent().getExtras().getString(PostData.C_Title);
@@ -105,9 +106,6 @@ public class ViewPostScreen extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_post_screen, menu);
-		Log.i("ManoaBulletinBoard","post IMEI = " + getIntent().getExtras().getString(PostData.C_ID));
-		Log.d("ManoaBulletinBoard","post IMEI = " + getIntent().getExtras().getString("IMEI"));
-		Log.d("ManoaBulletinBoard","your IMEI = " + Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID));		
 		if(!getIntent().getExtras().getString("IMEI").matches(Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID))) {
 			menu.getItem(0).setVisible(false);
 			menu.getItem(1).setVisible(false);

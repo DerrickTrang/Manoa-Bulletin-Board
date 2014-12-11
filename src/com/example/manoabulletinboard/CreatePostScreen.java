@@ -70,6 +70,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		Log.d("ManoaBulletinBoard","Got into create post screen");
 		/*Parse newpost_screen XML*/
 		setContentView(R.layout.create_post_screen);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.ManoaGreen));
 		
 		// set default values for location
 		Location_x = 0;
@@ -152,8 +153,20 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 				endtimetest += Integer.parseInt(EndMinute.getSelectedItem().toString());
 
 				// Check for blank title, description, email, or location
-				if(Title.getText().toString().matches("") || Description.getText().toString().matches("") || Email.getText().toString().matches("") || Location_x == 0) {
-                	Toast toast = Toast.makeText(getApplicationContext(), "Missing some fields/location", Toast.LENGTH_SHORT);
+				if(Title.getText().toString().matches("")) {
+                	Toast toast = Toast.makeText(getApplicationContext(), "Missing title", Toast.LENGTH_SHORT);
+                	toast.show();
+				}
+				else if(Description.getText().toString().matches("")) {
+                	Toast toast = Toast.makeText(getApplicationContext(), "Missing description", Toast.LENGTH_SHORT);
+                	toast.show();
+				}
+				else if(Email.getText().toString().matches("")) {
+                	Toast toast = Toast.makeText(getApplicationContext(), "Missing email", Toast.LENGTH_SHORT);
+                	toast.show();
+				}
+				else if(Location_x == 0) {
+                	Toast toast = Toast.makeText(getApplicationContext(), "Missing post's location", Toast.LENGTH_SHORT);
                 	toast.show();
 				}
 				// Check for valid phone number

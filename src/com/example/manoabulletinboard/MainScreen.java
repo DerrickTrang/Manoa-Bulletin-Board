@@ -45,6 +45,7 @@ public class MainScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.ManoaGreen));
         	
         SearchButton = (Button) findViewById(R.id.search_button);
         //Refresh = (Button)findViewById(R.id.refresh_button);
@@ -175,14 +176,14 @@ public class MainScreen extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch(id) {
-        case R.id.categories_button:
-        	sortByCategories();
-        	return true;
+//        case R.id.categories_button:
+//        	sortByCategories();
+//        	return true;
         case R.id.create_post_button:
         	createPost();
         	return true;
-        case R.id.action_settings:
-            return true;
+//        case R.id.action_settings:
+//            return true;
         default:
         return super.onOptionsItemSelected(item);
         }
