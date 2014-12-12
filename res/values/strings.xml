@@ -8,10 +8,12 @@
     <string name="search_button">Search</string>
     <string name="refresh_button">Refresh</string>
     <string name="create_post_button">Create a Post</string>
+    <string name="map_screen_button">Map</string>
     <string name="edit_post_button">Edit</string>
     <string name="delete_post_button">Delete</string>
     <string name="categories_button">Categories</string>
-
+    <string name="title_activity_map_screen">Campus Map</string>
+    
     <!-- Strings for create post screen -->
     <string name="title_activity_create_post_screen">Create a Post</string>
     <string name="create_post_screen_title">Title</string>
@@ -22,7 +24,6 @@
     <string name="create_post_screen_end_date">End date   </string>
     <string name="create_post_screen_start_time">Start time </string>
     <string name="create_post_screen_end_time">End time    </string>
-    
 
     <string-array name="create_post_screen_month">
         <item><i>- Month -</i></item>
@@ -37,7 +38,7 @@
         <item>September</item>
         <item>October</item>
         <item>November</item>
-        <item>December</item>                                                                                                                       
+        <item>December</item>
     </string-array>
     <string-array name="create_post_screen_day">
         <item><i>- Day -</i></item>
@@ -71,13 +72,13 @@
         <item>28</item>
         <item>29</item>
         <item>30</item>
-        <item>31</item>                                                                                                                      
+        <item>31</item>
     </string-array>
     <string-array name="create_post_screen_year">
         <item><i>- Year -</i></item>
         <item>2014</item>
         <item>2015</item>
-		<item>2016</item>
+        <item>2016</item>
         <item>2017</item>
         <item>2018</item>
         <item>2019</item>
@@ -98,7 +99,7 @@
         <item>09</item>
         <item>10</item>
         <item>11</item>
-        <item>12</item>        
+        <item>12</item>
     </string-array>
     <string-array name="create_post_screen_minute">
         <item>00</item>
@@ -112,13 +113,12 @@
         <item>40</item>
         <item>45</item>
         <item>50</item>
-        <item>55</item>        
+        <item>55</item>
     </string-array>
     <string-array name="create_post_screen_ampm">
         <item>A.M.</item>
         <item>P.M.</item>
     </string-array>
-    
     <string-array name="create_post_screen_categories">
         <item>- Category -</item>
         <item>Food Truck</item>
@@ -136,11 +136,11 @@
     <string name="categories_screen_show_all">Show All</string>
     <string name="categories_screen_food_truck">Food Trucks</string>
     <string name="categories_screen_clubs">Clubs</string>
-    
+
     <!-- Strings for view post screen -->
     <string name="title_activity_view_post_screen">Details</string>
-	<string name="view_post_screen_title">Name</string>
-	<string name="view_post_screen_email">No contact email provided</string>
-	<string name="view_post_screen_contact_number">No phone number provided</string>
+    <string name="view_post_screen_title">Name</string>
+    <string name="view_post_screen_email">No contact email provided</string>
+    <string name="view_post_screen_contact_number">No phone number provided</string>
 
 </resources>

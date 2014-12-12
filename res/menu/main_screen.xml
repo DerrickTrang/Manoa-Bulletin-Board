@@ -18,9 +18,13 @@
 <!--         android:title="@string/create_post_button" -->
 <!--         android:showAsAction="always" /> -->
     <item 
+        android:id="@+id/map_screen_button"
+        android:icon="@drawable/ic_action_map"
+        android:title="@string/map_screen_button"
+        app:showAsAction="always" />
+    <item 
         android:id="@+id/create_post_button"
         android:icon="@drawable/ic_action_new"
         android:title="@string/create_post_button"
         app:showAsAction="always" />
-    
 </menu>

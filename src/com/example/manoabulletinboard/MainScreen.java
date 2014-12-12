@@ -179,6 +179,9 @@ public class MainScreen extends ActionBarActivity {
 //        case R.id.categories_button:
 //        	sortByCategories();
 //        	return true;
+        case R.id.map_screen_button:
+        	mapScreen();
+        	return true;
         case R.id.create_post_button:
         	createPost();
         	return true;
@@ -192,6 +195,11 @@ public class MainScreen extends ActionBarActivity {
     public void sortByCategories() {
     	Intent intent = new Intent(this, CategoriesScreen.class);
     	startActivityForResult(intent, 2); // "2" is the request code for category screen
+    }
+    
+    public void mapScreen() {
+    	Intent intent = new Intent(this, MapScreen.class);
+    	startActivity(intent);
     }
     
     public void createPost() {

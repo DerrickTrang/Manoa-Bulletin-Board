@@ -22,12 +22,14 @@ import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class CreatePostScreen extends ActionBarActivity implements OnMapClickListener, OnCameraChangeListener {
 	/*Attribute declaration*/
+	LatLngBounds border;
 	boolean markerPresent;
 	Marker postLocation;
 	TextView Title;
@@ -73,6 +75,7 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.ManoaGreen));
 		
 		// set default values for location
+        border = new LatLngBounds(new LatLng(21.29058395, -157.82444), new LatLng(21.3059279, -157.81058));
 		Location_x = 0;
 		Location_y = 0;
 		markerPresent = false;
@@ -85,10 +88,10 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 		Number = (TextView)findViewById(R.id.create_post_screen_number);
 		StartDateMonth = (Spinner)findViewById(R.id.create_post_screen_start_month);
 		StartDateDay = (Spinner)findViewById(R.id.create_post_screen_start_day);
-		StartDateYear = (Spinner)findViewById(R.id.create_post_screen_end_year);
+		StartDateYear = (Spinner)findViewById(R.id.create_post_screen_start_year);
 		EndDateMonth = (Spinner)findViewById(R.id.create_post_screen_end_month);
 		EndDateDay = (Spinner)findViewById(R.id.create_post_screen_end_day);
-		EndDateYear = (Spinner)findViewById(R.id.create_post_screen_start_year);
+		EndDateYear = (Spinner)findViewById(R.id.create_post_screen_end_year);
 		StartHour = (Spinner)findViewById(R.id.create_post_screen_start_hour);
 		StartMinute = (Spinner)findViewById(R.id.create_post_screen_start_minute);
 		StartAMPM = (Spinner)findViewById(R.id.create_post_screen_start_ampm);
@@ -286,6 +289,8 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	@Override
 	public void onMapClick(LatLng position) {
 		Log.d("ManoaBulletinBoard","Map was tapped");
+		if(border.contains(position)) {
+			
 		if(!markerPresent) {
 			markerPresent = true;
 			postLocation = map.addMarker(new MarkerOptions().position(position).title("Post here!"));
@@ -297,6 +302,11 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 			postLocation = map.addMarker(new MarkerOptions().position(position).title("Post here!"));
 			Location_x = position.longitude;
 			Location_y = position.latitude;
+		}
+		}
+		else {
+        	Toast toast = Toast.makeText(getApplicationContext(), "Location must be on campus", Toast.LENGTH_SHORT);
+        	toast.show();
 		}
 	}
 	
@@ -397,24 +407,24 @@ public class CreatePostScreen extends ActionBarActivity implements OnMapClickLis
 	
 	@Override
 	public void onCameraChange(CameraPosition C) {
-		if(C.zoom < 16) {
-			map.moveCamera(CameraUpdateFactory.zoomTo(16));
-		}
-		if(C.zoom > 18) {
-			map.moveCamera(CameraUpdateFactory.zoomTo(18));
-		}
-		if(C.target.latitude < 21.29058395) {
-			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.29058395,C.target.longitude)));
-		}
-		if(C.target.latitude > 21.3059279) {
-			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.3059279,C.target.longitude)));
-		}
-		if(C.target.longitude > -157.81058) {
-			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(C.target.latitude,-157.81058)));
-		}
-		if(C.target.longitude < -157.82444) {
-			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(C.target.latitude,-157.82444)));
-		}
+//		if(C.zoom < 16) {
+//			map.moveCamera(CameraUpdateFactory.zoomTo(16));
+//		}
+//		if(C.zoom > 18) {
+//			map.moveCamera(CameraUpdateFactory.zoomTo(18));
+//		}
+//		if(C.target.latitude < 21.29058395) {
+//			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.29058395,C.target.longitude)));
+//		}
+//		if(C.target.latitude > 21.3059279) {
+//			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.3059279,C.target.longitude)));
+//		}
+//		if(C.target.longitude > -157.81058) {
+//			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(C.target.latitude,-157.81058)));
+//		}
+//		if(C.target.longitude < -157.82444) {
+//			map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(C.target.latitude,-157.82444)));
+//		}
 	}
 	
 	private void EditPost()
