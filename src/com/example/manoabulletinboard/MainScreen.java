@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
@@ -31,10 +32,7 @@ import android.widget.Toast;
 public class MainScreen extends ActionBarActivity {
 
 	Button SearchButton;
-	Button Refresh;
-	
-	//for testing Server only
-	Button ServerB;
+	EditText SearchText;
 	
 	ArrayList<Post> post_list = new ArrayList<Post>();
 	CustomAdapter adapter;
@@ -46,35 +44,19 @@ public class MainScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.ManoaGreen));
-        	
+        
+        SearchText = (EditText) findViewById(R.id.search_text);
         SearchButton = (Button) findViewById(R.id.search_button);
-        //Refresh = (Button)findViewById(R.id.refresh_button);
+        SearchButton.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		searchScreen();
+        	}
+        	
+        });
 
         //pasing context into the application for showing dialog. (turns out only the serachbutton context works)
 		((PostApp)getApplication()).setContext(SearchButton.getContext());
-        
-        //for testing Server only ******************* ADDED IMPLEMENTATION TO REFRESHLIST METHOD
-//        ServerB = (Button)findViewById(R.id.button1);
-//        ServerB.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				((PostApp)getApplication()).SyncEvent();
-//			}
-//		});
-        //********************************************
-        
-//        Refresh.setEnabled(true);
-//        Refresh.setOnClickListener(new View.OnClickListener(){
-//
-//			@Override
-//			public void onClick(View v) {
-//				// Refresh the list
-//				refreshList();
-//			}
-//        	
-//        });
         
         /*List View initiation*/
         final ListView list = (ListView)findViewById(R.id.main_screen_scroll_view);
@@ -151,16 +133,7 @@ public class MainScreen extends ActionBarActivity {
         });       	
 		
 		cursor = ((PostApp)getApplication()).postdata.query();
-		// Add something to make it refresh the list on create
-//		android.os.SystemClock.sleep(2000);
-//		refreshList();
     }
-    
-//    @Override
-//    public void onResume() {
-//    	super.onResume();
-//    	refreshList();
-//    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -201,6 +174,18 @@ public class MainScreen extends ActionBarActivity {
     	Intent intent = new Intent(this, MapScreen.class);
     	startActivity(intent);
     }
+    
+    public void searchScreen() {
+    	if(SearchText.getText().toString().matches("")) {
+        	Toast toast = Toast.makeText(getApplicationContext(), "Can't do a blank search!", Toast.LENGTH_SHORT);
+        	toast.show();
+    	}
+    	else {
+        	Intent intent = new Intent(this, SearchScreen.class);
+        	intent.putExtra("search_text", SearchText.getText().toString());
+        	startActivity(intent);
+    	}
+	}
     
     public void createPost() {
     	Intent intent = new Intent(this, CreatePostScreen.class);

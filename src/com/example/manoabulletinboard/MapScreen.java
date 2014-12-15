@@ -49,19 +49,16 @@ public class MapScreen extends ActionBarActivity implements OnMapClickListener, 
 			post_position = new LatLng(locationy, locationx);
 			category = cursor.getString(cursor.getColumnIndex(PostData.C_Category));
 			Log.d("ManoaBulletinBoard","category in map = " + category);
-			if(category == "Food Truck")
-				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.dining_room96)));
-			else if(category == "For Sale")
-				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.price_tag96)));
-			else if(category == "Event")
-				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.dancing96)));
-			else if(category == "Club")
-				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.group96)));
-			else if(category == "Other")
-				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.bookmark96)));
+			if(category.matches("Food Truck"))
+				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.dining_room32)));
+			else if(category.matches("For Sale"))
+				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.price_tag32)));
+			else if(category.matches("Event"))
+				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.dancing32)));
+			else if(category.matches("Club"))
+				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.users32)));
 			else
-				map.addMarker(new MarkerOptions().position(post_position));
-			Log.d("ManoaBulletinBoard","Added an icon");
+				map.addMarker(new MarkerOptions().position(post_position).icon(BitmapDescriptorFactory.fromResource(R.drawable.bookmark32)));
 
 			cursor.moveToNext();
 		}

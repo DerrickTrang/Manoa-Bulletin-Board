@@ -49,7 +49,7 @@ public class CustomAdapter extends ArrayAdapter<Post> {
         	image.setImageResource(R.drawable.dancing96);
         	break;
         case "Club":
-        	image.setImageResource(R.drawable.group96);
+        	image.setImageResource(R.drawable.users96);
         	break;
         case "Other":
         	image.setImageResource(R.drawable.bookmark96);

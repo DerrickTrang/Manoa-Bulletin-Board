@@ -51,6 +51,10 @@
             android:name=".MapScreen"
             android:label="@string/title_activity_map_screen" >
         </activity>
+        <activity
+            android:name=".SearchScreen"
+            android:label="@string/title_activity_search_screen" >
+        </activity>
     </application>
 
     <!-- MORE MAP STUFF!!! -->

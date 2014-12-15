@@ -13,7 +13,8 @@
     <string name="delete_post_button">Delete</string>
     <string name="categories_button">Categories</string>
     <string name="title_activity_map_screen">Campus Map</string>
-    
+    <string name="title_activity_search_screen">Search</string>
+
     <!-- Strings for create post screen -->
     <string name="title_activity_create_post_screen">Create a Post</string>
     <string name="create_post_screen_title">Title</string>
